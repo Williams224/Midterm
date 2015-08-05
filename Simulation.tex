@@ -48,7 +48,24 @@ From these fits the standard deviation divided by the mean was plotted against t
   \label{eq:fitfr}
   \frac{\sigma}{E}=\frac{a}{\sqrt{E}}\bigoplus c
 \end{equation}
-was performed with the parameters 'a' and 'c' left floating as these are to be determined by the fit. An example of this is shown in   This process was applied to both \geant version 9.5.p02 and 9.6.p04 with the same energies and 10000 events at each energy.  The results of these fits for both \geant versions are shown in figures \ref{fig:straightres} and \ref{fig:coolres}.
+was performed with the parameters 'a' and 'c' left floating as these are to be determined by the fit.  This process was applied to both \geant version 9.5.p02 and 9.6.p04 with the same energies and 10000 events at each energy.  The results of these fits for both \geant versions are shown in figures \ref{fig:straightres}, \ref{fig:coolres} and table \ref{tab:results}.
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{|c|c|c|c|}
+      \hline
+      Version: & v9.5 & v9.6 & Difference  \\ \hline
+      A term    & 0.0952$\pm$0.0003 & 0.0922$\pm$0.0002  & 8.43$\sigma$, 3.3\% \\ \hline
+      C term    & 0.0050$\pm$0.0003 & 0.0048$\pm$0.0003 & consistent \\ \hline
+      $\frac{\chi^2}{ndf}$   &1.140  & 0.998 &  \\ \hline
+  \end{tabular}
+  \caption{Fractional resolution results for comparison of \geant versions}
+  \label{tab:results}
+\end{table}
+
+It is clear from these fits that there is a significant discrepancy in the statistical term of the fractional resolution parameterisation between \geant versions, despite the same PL being used in both versions.  The simulation of electromagnetic showers is a well established process that, in general, shows good agreement with data.  Therefore, progression of results this significant is not expected.  As many different processes contribute to electromagnetic showering more investigations were needed to understand exactly which part of the simulation is giving rise to this discrepancy.
+
+
 
 
 %Frac Res Investigation
