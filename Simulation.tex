@@ -17,7 +17,9 @@ The object orientated design of \geant means that it is very easy to have a vari
 
 \subsection{Simple Calorimeter Test}
 \label{sec:Simple Calorimeter Test}
-The first test to validate the new version of \geant  was an extended electromagnetic example designed to model an electromagnetic calorimeter.  The basic principle behind this comparison was to run this example within both \geant versions and compare selected results that could have implications for \lhcb.  Firstly, checks were made to ensure that the implementation of the example was unchanged between versions to ensure any discrepencies could be attributed to changes global to the \geant framework and not just a change in this specific example.  The example allowed the exact geometry being simulated to be changed very easily; the number of seperate layers of material, thicknesses of materials and the materials that are used can all be modified.  Therefore, the example was setup to model the \lhcb electromagnetic calorimeter (ECAL) as closely as possible. As described in section \ref{sec:Detector} this is a sampling calorimeter consisiting of 66 alternating layers of lead and plastic scintillator \cite{LHCb-TDR-002}. In order to make this a direct comparison between what is currently implemented and what will be implemented the example was customised to run with the \lhcb private PL.  Therefore, the same models are being used in both versions, but the models themselves could have changed between versions.
+The first test to validate the new version of \geant  was an extended electromagnetic example designed to model an electromagnetic calorimeter.  The basic principle behind this comparison was to run this example within both \geant versions and compare selected results that could have implications for \lhcb.  
+
+Firstly, checks were made to ensure that the implementation of the example was unchanged between versions to ensure any discrepencies could be attributed to changes global to the \geant framework and not just a change in this specific example.  After this had been established to be true, the example was setup to model the \lhcb electromagnetic calorimeter (ECAL) as closely as possible. As described in section \ref{sec:Detector}, the \lhcb ECAL is a sampling calorimeter consisiting of 66 alternating layers of lead and plastic scintillator \cite{LHCb-TDR-002}. In order to make this a direct comparison between what is currently implemented and what will be implemented the example was customised to run with the \lhcb private PL.  Therefore, the same physics models are being used in both versions, but the models themselves could have changed between versions.
 
 \subsubsection{Fractional Resolution Investigation}
 \label{sec:Fractional Resolution Investigation}
@@ -26,5 +28,38 @@ The first result used as a comparison tool between \geant versions was the fract
 \begin{equation}\label{eq:fr}
 \frac{\sigma}{E}=\frac{a}{\sqrt{E}} \bigoplus \frac{b}{E} \bigoplus c
 \end{equation}
-where a, b and c are constants to be defined\cite{wigmans2000calorimetry}.  The 'a' term in equation \ref{eq:fr} arises from statistical fluctuations in the electromagnetic shower induced by the sampling calorimeter.
+where a, b and c are constants to be defined\cite{wigmans2000calorimetry}.  
+
+The 'a' term in equation \ref{eq:fr} arises from statistical fluctuations in the electromagnetic shower induced by the sampling calorimeter.  In an electromagnetic shower many particles are produced and the energy measured by the ECAL is the sum of the energies deposited by each particle.  However in a sampling calorimeter only a fraction of the shower takes place in active regions, therefore only a fraction of the shower particles are actually measured.  Consequently the number of shower particles that are measured is subject to poisson fluctutations with a standard deviation of $\sqrt{N}$, where N is the number of shower particles in the active region.  Assuming the calorimeter is linear (which it should be) the number of shower particles produced is proportional to energy, therefore $\frac{\sigma}{E} \propto \frac{\sqrt{N}}{N} \propto \frac{1}{\sqrt{E}}$. In a sampling calorimeter it is sampling fluctiations that dominate the resolution, thus the 'a' term is usually by far the largest term in equation \ref{eq:fr}.  
+
+The 'b' term in equation \ref{eq:fr} arises due to electronic noise which causes energy independent resolution effects.  However, this is not simulated in this study and will therefore not be considered.  The 'c' term in equation \ref{eq:fr} arises due to shower leakage from the ECAL.  At a given energy the amount of energy lost from the ECAL is subject to event by event fluctuations, which leads to broadening of the resolution.  However, the total amount of energy lost from the ECAL is proportional to the energy of the incident particle and this dominates over the event by event effects.  This leads to the standard deviation of measured energies due to shower leakage being proportinal to incident energy, and consequently energy indpendent for the fractional resolution.
+
+The first step towards obtaining the fractional resolution of the model ECAL was to fire electrons into the ECAL at several fixed energies.  At each energy a histogram was produced showing the distribution of energy deposited in active regions of the ECAL per event.  This distribution is predicted to be gaussian, therefore a minimum chi squared fit of a gaussian function was performed at each energy to obtain the mean and standard deviation of the distribution. An example of one of these fits is shown in figure \ref{fig:Gauss}.  This was performed at 13 different energies between 1.56GeV and 44.44GeV, this range was chosen because it includes the majority of electron energies expected at \lhcb.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{GaussExample.pdf}
+  \caption{The distribution of energy deposited in scintillator(active) layers at 25 GeV}
+  \label{fig:Gauss}
+\end{figure}
+
+From these fits the standard deviation divided by the mean was plotted against the incident particle energy, as defined in the configuration of \geant.  $\frac{\sigma}{E}$ is expected to follow equation \ref{eq:fr} but without the b term. Therefore a mimimum chi squared fit to,
+\begin{equation}
+  \label{eq:fitfr}
+  \frac{\sigma}{E}=\frac{a}{\sqrt{E}}\bigoplus c
+\end{equation}
+was performed with the parameters 'a' and 'c' left floating as these are to be determined by the fit. An example of this is shown in   This process was applied to both \geant version 9.5.p02 and 9.6.p04 with the same energies and 10000 events at each energy.  The results of these fits for both \geant versions are shown in figures \ref{fig:straightres} and \ref{fig:coolres}.
+
+
+%Frac Res Investigation
+%----Comparison of Geant4 versions
+%Sampling fraction investigations
+%----Comparison of Geant4 versions
+%Physics List investigations
+%----Fractional Resolution
+%----Sampling Fraction Results
+
+%MSC
+%--results
+
 

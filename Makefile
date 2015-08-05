@@ -43,7 +43,7 @@ $(MAIN)$(MAINEXT): $(SOURCES) Makefile
 	$(BUILDCOMMAND)
 
 # just so we can say "make all" without knowing the output name
-all: $(OUTPUT)
+all: $(OUTPUT) $(shell ./count.sh $<)
 
 # remove temporary files (good idea to say "make clean" before putting things back into repository)
 .PHONY : clean
