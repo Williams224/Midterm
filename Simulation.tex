@@ -2,7 +2,7 @@
 
 \section{Simulation}
 \label{sec:Simulation}
-It is crucial to any particle physics experiment to understand and be able to calculate the behavoiur of the detector and apparatus being used.  No detector is perfect, therefore only a fraction of the particles created in the process being studied actually get fully measured and reconstructued.  From this subset of detected particles one has to infer the total number of particles created and any relevant distributions related to the measurement in question, the only practical way to calculate these detector efficiencies is with a full detector simulation.  A full detector simulation is also crucial for detector performance studies, understanding backgrounds and comparisons between theory and experiment.
+It is crucial to any particle physics experiment to understand and be able to calculate the behavoiur of the detector and apparatus being used.  No detector is perfect, therefore only a fraction of the particles created in the process being studied actually get fully measured and reconstructued.  From this subset of detected particles one has to infer the total number of particles created and any relevant distributions related to the measurement in question, the only practical way to calculate these detector efficiencies is with a full detector simulation.  One area of the \lhcb physics programme where detector simulation is of even greater importance is semi leptonic decays involving neutrinos.  Due to the \lhcb detector not being hermetic any neutrinos escape the detector, consequently the only way to perform analyses involving neutrinos is with template fits based on monte carlo predictions.  An example of an analysis exploiting this strategy is the measurement of \Vub, which is a result considered to be of high importance \cite{LHCb-PAPER-2015-013}.  A full detector simulation is also crucial for detector performance studies, understanding backgrounds and comparisons between theory and experiment.
 
 The complexity of particle physics detectors and the many degrees of freedom in the underlying problem behind a detector simualtion make it unfathomably complex and highly multi-dimensional.  Consequntly, the ``monte carlo''(MC) or statistical sampling method is used to perform these simulations due to the fact it deals with multi dimensinal problems very well and it makes the problem conceptually far easier to understand.  More specifically direct monte carlo is used.
 
@@ -89,9 +89,13 @@ The results of these sampling fraction studies are significant, both statistical
 
 The precise cause of these discrepancies needs to be understood because there could be implications for the simulation of other detector components.  Therefore, the models used when the \lhcb PL is specified were compared between versions and the following changes were consider possible causes of the discrepancy:
 \begin{itemize}
-\item \textbf {New implementation of UrbanMsc95 multiple scattering model} 
-  
+\item \textit{New implementation of UrbanMsc95 multiple scattering model.}  It is detailed in the release notes that sampling of multiple scattering in version 9.6 is now performed before the energy loss of each particle.  However, in version 9.5 and before energy loss was sampled before multiple scattering.  If this changed the scattering andlge distribution of electrons and positrons in the calorimeter, it could change the number of particles that scatter over the boundary between active and passive layers.
+\item \textit{Change in angular distribution model for electron bremsstrahlung.} In version 9.6 a boosted dipole approximation is used for the angular distribution of photons emitted in electron bremmsstrahlung, as described in \cite{:/content/aip/journal/apl/80/17/10.1063/1.1473684}.  A change in the angular distribution of bremsstrahlung could also result in particles previously depositing energy in passive layers traversing the boundary between layers and depositing energy in active layers instead.
 \end{itemize}
+
+After contacting the \geant collaboration, the cause of the observed discrepancy is believed to lie with the changes to the multiple scattering model.  In fact, the \geant collaboration recommended that the multiple scattering models used in the \lhcb private PL are changed from \textit{UrbanMsc95} to \textit{UrbanMsc93} below 100MeV and \textit{WentzelVI} above 100MeV.
+  
+
 
 
 
