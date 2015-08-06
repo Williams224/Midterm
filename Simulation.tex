@@ -65,16 +65,43 @@ was performed with the parameters 'a' and 'c' left floating as these are to be d
 
 It is clear from these fits that there is a significant discrepancy in the statistical term of the fractional resolution parameterisation between \geant versions, despite the same PL being used in both versions.  The simulation of electromagnetic showers is a well established process that, in general, shows good agreement with data.  Therefore, progression of results this significant is not expected.  As many different processes contribute to electromagnetic showering more investigations were needed to understand exactly which part of the simulation is giving rise to this discrepancy.
 
+\subsubsection{Sampling Fraction and Shower Profile Investigations}
+\label{sec:Sampling Fraction and Shower Profile Investigations}
+In order to understand the unexpected results described in section \ref{sec:Fractional Resolution Investigation} it was decided that a study of the shower profiles in both active and passive layers of the calorimeter would be performed.  A shower profile is a plot of dE/dX against X, where X is the longitudinal depth from the front face of the calorimeter and E is the energy deposited.  Although X is often expressed in terms of radiation lengths, in this case the layer number was used because the shower profiles were in bins corresponding to the thickness of one layer of the ECAL.
+
+Again, electrons at 13 different energies between 1.56GeV and 44.44GeV were fired into the ECAL using both \geant versions.  At each energy, shower profiles for active and passive layers were considered seperately and the profiles resulting from each version of \geant were plotted on top of each other for comparison.  The results at 1.56GeV and 44.44 GeV are shown in figures \ref{fig:1.56sp} and \ref{fig:44.44sp} respectively, all other energies are shown in \ref{ap:sp}.
+
+%PUT SHOWER PROFILES HERE
+It is clear from these shower profiles that \geant version 9.6.p04 is depositing more energy in active layers and less energy in passive layers compared to \geant 9.5.p02.  This pattern is observed at all energies simulated.
+
+To further investigate this behaviour the shower profiles were split by particle type; seperate shower profiles were plotted for electrons, positrons and photons.  These results can be seen in figures \ref{fig:1.56spseperate}  and \ref{fig:44.44spseperate}.
+%PUT SEPERATE SHOWER PROFILES HERE
+These reuslts show that the observed discrepancy can not be attributed to the way in which photons are modelled because the total energy deposited by photons is negligable and would therefore not be able to influence the overall shower profiles.
+
+In order to quantify further this observed change in behaviour, the ECAL sampling fraction as a function of energy was studied for both \geant versions.  The sampling fraction, in this context, is defined as the energy deposited in active layers (visible energy) divided by the total energy deposited in the ECAL.  The total energy deposited in each type of material was obtained by integrating the shower profiles over all layers.  The resulting sampling fractions as a function of energy are shown in \ref{fig:sfcomp}. To further this quantification the ratio of energy deposited in active layers to passive layers was also plotted as a function of energy for both \geant versions and the results are shown in figure \ref{fig:ratiocomp}.  The results from both of these plots are summarised in table \ref{tab:sfcomp}.
+
+\subsubsection{Discussion of results for \geant version comparison}
+\label{sec:Discussionofresultsone}
+The results of these sampling fraction studies are significant, both statistically and in terms of the implications for the next simulation package used by \lhcb.  It is very clear that the sampling fractions have changed between \geant versions and this change would explain the observed discrepancy in fractional resolution seen in section \ref{sec:Fractional Resolution Investigation}.  Sampling more energy would always improve the fractional resolution of an ECAL because it means any statistical fluctutations are relatively less significant. The ECAL has to be calibrated in monte carlo such that an observed value of visible energy corresponds to the correct incident energy.  Since these results show that the visible energy of the ECAL has changed in this new version of \geant this calibration will have to be performed again when the new simulation package is released.
+
+The precise cause of these discrepancies needs to be understood because there could be implications for the simulation of other detector components.  Therefore, the models used when the \lhcb PL is specified were compared between versions and the following changes were consider possible causes of the discrepancy:
+\begin{itemize}
+\item \textbf {New implementation of UrbanMsc95 multiple scattering model} 
+  
+\end{itemize}
 
 
 
-%Frac Res Investigation
+
+%Simple Calorimeter Test
 %----Comparison of Geant4 versions
-%Sampling fraction investigations
-%----Comparison of Geant4 versions
-%Physics List investigations
-%----Fractional Resolution
-%----Sampling Fraction Results
+%---------Resolution investigations
+%---------Sampling fraction investigations
+%---------Geant4 version comparison results discussion
+%----Physics List investigations
+%---------Fractional Resolution
+%---------Sampling Fraction Results
+%---------Results Discussion
 
 %MSC
 %--results
