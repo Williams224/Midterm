@@ -54,15 +54,27 @@ From these fits the standard deviation divided by the mean was plotted against t
   \frac{\sigma}{E}=\frac{a}{\sqrt{E}}\bigoplus c
 \end{equation}
 was performed with the parameters 'a' and 'c' left floating as these are to be determined by the fit.  This process was applied to both \geant version 9.5.p02 and 9.6.p04 with the same energies and 10000 events at each energy.  The results of these fits for both \geant versions are shown in figures \ref{fig:straightres}, \ref{fig:coolres} and table \ref{tab:results}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{StraightCompareUse.pdf}
+  \caption{Comparison of observed fractional resolution in \geant v9.5 and v9.6}
+  \label{fig:straightres}
+\end{figure}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{CurvedCompare.pdf}
+  \caption{Comparison of observed fractional resolution in \geant v9.5 and v9.6}
+  \label{fig:coolres}
+\end{figure}
 
-\begin{table}[h!]
+\begin{table}[h]
   \centering
   \begin{tabular}{|c|c|c|c|}
       \hline
       Version: & v9.5 & v9.6 & Difference  \\ \hline
-      A term    & 0.0952$\pm$0.0003 & 0.0922$\pm$0.0002  & 8.43$\sigma$, 3.3\% \\ \hline
-      C term    & 0.0050$\pm$0.0003 & 0.0048$\pm$0.0003 & consistent \\ \hline
-      $\frac{\chi^2}{ndf}$   &1.140  & 0.998 &  \\ \hline
+      A term    & 0.0952$\pm$0.0003 & 0.0922$\pm$0.0003  & 8.43$\sigma$, 3.3\% \\ \hline
+      C term    & 0.0051$\pm$0.0003 & 0.0049$\pm$0.0003 & consistent \\ \hline
+      $\frac{\chi^2}{ndf}$   &1.798  & 1.048 &  \\ \hline
   \end{tabular}
   \caption{Fractional resolution results for comparison of \geant versions}
   \label{tab:results}
@@ -75,7 +87,38 @@ It is clear from these fits that there is a significant discrepancy in the stati
 In order to understand the unexpected results described in section \ref{sec:Fractional Resolution Investigation} it was decided that a study of the shower profiles in both active and passive layers of the calorimeter would be performed.  A shower profile is a plot of dE/dX against X, where X is the longitudinal depth from the front face of the calorimeter and E is the energy deposited.  Although X is often expressed in terms of radiation lengths, in this case the layer number was used because the shower profiles were in bins corresponding to the thickness of one layer of the ECAL.
 
 Again, electrons at 13 different energies between 1.56GeV and 44.44GeV were fired into the ECAL using both \geant versions.  At each energy, shower profiles for active and passive layers were considered seperately and the profiles resulting from each version of \geant were plotted on top of each other for comparison.  The results at 1.56GeV and 44.44 GeV are shown in figures \ref{fig:1.56sp} and \ref{fig:44.44sp} respectively, all other energies are shown in \ref{ap:sp}.
-
+\begin{figure}[h]
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{ShowerProfileLead44.pdf}
+    \caption{Normalised shower profile for electrons in Lead at 44.44GeV}
+    \label{fig:44.44splead}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{ShowerProfileScintillator44.pdf}
+    \caption{Normalised shower profile for electrons in Scintillator at 44.44GeV}
+    \label{fig:44.44spscint}
+  \end{subfigure}
+  \caption{Normalised shower profiles}
+  \label{fig:44.44sp}
+\end{figure}
+\begin{figure}[h]
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{ShowerProfileLead178.pdf}
+    \caption{Normalised shower profile for electrons in Lead at 1.78GeV}
+    \label{fig:44.44splead}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{ShowerProfileScintillator178.pdf}
+    \caption{Normalised shower profile for electrons in Scintillator at 1.78GeV}
+    \label{fig:44.44spscint}
+  \end{subfigure}
+  \caption{Normalised shower profiles}
+  \label{fig:44.44sp}
+\end{figure}
 %PUT SHOWER PROFILES HERE
 It is clear from these shower profiles that \geant version 9.6.p04 is depositing more energy in active layers and less energy in passive layers compared to \geant 9.5.p02.  This pattern is observed at all energies simulated.
 
