@@ -1,0 +1,6 @@
+#include"FiveSimRun.hpp"
+
+FiveSimRun::FiveSimRun(std::string _DataFileName,std::string _Name){
+
+
+}

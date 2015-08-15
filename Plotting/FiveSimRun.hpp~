@@ -1,0 +1,8 @@
+#ifndef FIVESIMRUN_HPP
+#define FIVESIMRUN_HPP
+#include"FiveSimRun.hpp"
+
+class FiveSimRun : public ComparableObject{
+
+
+};
