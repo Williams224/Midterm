@@ -10,5 +10,7 @@ int main(){
   TFile* Out = new TFile("Output.root","RECREATE");
   TheComparison->WriteStraightRes();
   TheComparison->WriteCurvedRes();
-  
+  TheComparison->WriteSamplingRatio();
+  TheComparison->WriteScintSampling();
+  TheComparison->WriteLeadSampling();
 }

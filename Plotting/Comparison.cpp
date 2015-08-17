@@ -6,17 +6,28 @@ Comparison::Comparison(std::string _Name):ComparisonName(_Name){
   Colors.push_back(kGreen+2);
   Colors.push_back(kMagenta);
   Colors.push_back(kOrange);
+  FitEquation= new TLatex();
+  FitEquation->SetTextSize(0.03);
+
+  FR= new TText();
+  FR->SetTextSize(0.03);
+  T3= new TText();
+  T3->SetTextSize(0.03);
+  T3->SetTextSize(0.03);
+  L3= new TLatex();
+  L3->SetTextSize(0.03);
+  
 }
 
 Comparison::~Comparison(){
   delete StraightCanvas;
   delete StraightMG;
   delete StraightLeg;
-  delete StraightText;
-  delete StraightCurved;
+  delete L3;
+  delete T3;
   delete FitEquation;
-  delete FR95;
-  delete FR96;
+  delete FR;
+  delete RatioCanvas;
   std::cout<<"Comparison Destructor Called"<<std::endl;
 }
 
@@ -43,28 +54,9 @@ void Comparison::WriteStraightRes(){
   StraightMG->SetTitle(StraightTitle.data());
   StraightMG->GetYaxis()->SetTitle("#frac{#sigma}{E}");
   StraightMG->GetXaxis()->SetTitle("#frac{1}{#sqrt{E_{i}}}");
-  StraightText= new TLatex();
-  StraightText->SetTextSize(0.03);
-  StraightText->DrawLatex(0.13,0.059,"#sigma=Resolution of Energy Distribution in Active Layers");
-  StraightCurved= new TText();
-  StraightCurved->SetTextSize(0.03);
-  StraightCurved->SetTextSize(0.03);
-  StraightCurved->DrawText(0.13,0.055,"E= Total Energy Deposited in Active Layers");
-
-  FitEquation= new TLatex();
-  FitEquation->DrawLatex(0.13,0.051,"Fit: #frac{#sigma}{E}=#frac{a}{#sqrt{E}} #oplus C");
-  FitEquation->SetTextSize(0.03);
   StraightLeg->Draw();
-
-  FR95= new TText();
-  FR95->SetTextSize(0.03);
-  FR95->SetTextSize(0.03);
-  if(SimRuns.size()==2)FR95->DrawText(0.13,0.07,"v9.5 Fit Result");
-
-  FR96= new TText();
-  FR95->SetTextSize(0.03);
-  FR95->SetTextSize(0.03);
-  if(SimRuns.size()==2)FR95->DrawText(0.18,0.07,"v9.6 Fit Result");
+  if(SimRuns.size()==2)FR->DrawText(0.13,0.07,"v9.5 Fit Result");
+  if(SimRuns.size()==2)FR->DrawText(0.18,0.07,"v9.6 Fit Result");
   StraightCanvas->Write();
     
 
@@ -88,8 +80,93 @@ void Comparison::WriteCurvedRes(){
   CurvedMG->SetTitle(CurvedTitle.data());
   CurvedMG->GetYaxis()->SetTitle("#frac{#sigma}{E}");
   CurvedMG->GetXaxis()->SetTitle("#frac{1}{#sqrt{E_{i}}}");
+  StraightLeg->Draw();
+  if(SimRuns.size()==2)FR->DrawText(0.13,0.07,"v9.5 Fit Result");
+  if(SimRuns.size()==2)FR->DrawText(0.18,0.07,"v9.6 Fit Result");
   CurvedCanvas->Write();
-  FitEquation
+}
+
+void Comparison::WriteSamplingRatio(){
+  RatioCanvas=new TCanvas("Sampling Ration Comparison","Sampling Ratio Comparison",1800,1000);
+  SamplingRatioMG=new TMultiGraph();
+  SamplingRatioLeg=new TLegend(0.1,0.75,0.48,0.9);
+  auto c=Colors.begin();
+  assert(Colors.size()>=SimRuns.size());
+  SamplingTitle="Comparison of ";
+  for(auto s=SimRuns.begin();s!=SimRuns.end();++s,++c){
+    Color_t CurrentColor=(*c);
+    SamplingRatioMG->Add(s->second->GetSamplingRatio(CurrentColor));
+    SamplingRatioLeg->AddEntry(s->second->GetSamplingRatio(CurrentColor),(s->second->GetName()).data(),"LPE");
+    SamplingTitle=SamplingTitle+(s->second->GetName())+", ";
+  }
+  SamplingRatioMG->Draw("AP");
+  SamplingRatioMG->SetTitle(SamplingTitle.data());
+  SamplingRatioMG->GetYaxis()->SetTitle("Scintillator E/Lead E");
+  SamplingRatioMG->GetXaxis()->SetTitle("Incident Energy/GeV");
+  SamplingRatioLeg->Draw();
+  RatioCanvas->Write();
+}
+
+void Comparison::WriteScintSampling(){
+  ScintSamplingCanvas=new TCanvas("Scintillator Sampling Fraction","Scintillator Sampling Fraction",1800,1000);
+  ScintSamplingMG= new TMultiGraph();
+  ScintSamplingLeg= new TLegend(0.1,0.75,0.48,0.9);
+  auto c=Colors.begin();
+  assert(Colors.size()>=SimRuns.size());
+  ScintSamplingTitle="Comparison of ";
+  for(auto s=SimRuns.begin();s!=SimRuns.end();++s,++c){
+    Color_t CurrentColor=(*c);
+    ScintSamplingMG->Add(s->second->GetScintSampling(CurrentColor));
+    ScintSamplingLeg->AddEntry(s->second->GetScintSampling(CurrentColor),(s->second->GetName()).data(),"LPE");
+    ScintSamplingTitle=ScintSamplingTitle+(s->second->GetName())+", ";
+  }
+  ScintSamplingTitle=ScintSamplingTitle+" with 10000 events";
+  ScintSamplingMG->Draw("AP");
+  ScintSamplingLeg->Draw();
+  ScintSamplingMG->SetTitle(ScintSamplingTitle.data());
+  ScintSamplingMG->GetYaxis()->SetTitle("Scintillator E/Incident E");
+  ScintSamplingMG->GetYaxis()->SetTitleOffset(1.3);
+  ScintSamplingMG->GetXaxis()->SetTitle("Incident Energy/GeV");
+  ScintSamplingCanvas->Write();
+}
+
+void Comparison::WriteLeadSampling(){
+  LeadSamplingCanvas=new TCanvas("Lead Sampling Fraction","Lead Sampling Fraction",1800,1000);
+  LeadSamplingMG= new TMultiGraph();
+  LeadSamplingLeg= new TLegend(0.1,0.75,0.48,0.9);
+  auto c=Colors.begin();
+  assert(Colors.size()>=SimRuns.size());
+  LeadSamplingTitle="Comparison of ";
+  for(auto s=SimRuns.begin();s!=SimRuns.end();++s,++c){
+    Color_t CurrentColor=(*c);
+    LeadSamplingMG->Add(s->second->GetLeadSamping(CurrentColor));
+    LeadSamplingLeg->AddEntry(s->second->GetLeadSamping(CurrentColor),(s->second->GetName()).data(),"LPE");
+    LeadSamplingTitle=LeadSamplingTitle+(s->second->GetName())+", ";
+  }
+  LeadSamplingTitle=LeadSamplingTitle+" with 10000 events";
+  LeadSamplingMG->Draw("AP");
+  LeadSamplingLeg->Draw();
+  LeadSamplingMG->SetTitle(LeadSamplingTitle.data());
+  LeadSamplingMG->GetYaxis()->SetTitle("Leadillator E/Incident E");
+  LeadSamplingMG->GetYaxis()->SetTitleOffset(1.3);
+  LeadSamplingMG->GetXaxis()->SetTitle("Incident Energy/GeV");
+  LeadSamplingCanvas->Write();
+}
+
+void Comparison::WriteShowers(){
+  for(i=1;i<=13;++i){
+    TCanvas ShowerCanvas("Shower Comparisons","Shower Comparisons",1800,1000);
+    ShowerCanvas.Divide(2,1);
+    ShowerCanvas.cd(1);
+    auto c= Colors.begin();
+    for(auto s=SimRuns.being();s!=SimRuns.end();++s,++c){
+      Color_t CurrentColor=c->second;
+      (s->second->GetLeadShowerProfiles(CurrentColor))->second
+
+    }
+
+  }
+
 
 
 }
