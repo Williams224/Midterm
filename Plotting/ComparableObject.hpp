@@ -31,7 +31,7 @@ protected:
   virtual TGraphErrors* GetScintSampling(Color_t _Color);
   virtual TGraphErrors* GetLeadSamping(Color_t _Color);
   virtual std::map<std::string,TH1D*> GetLeadShowerProfiles(Color_t _Color);
-  virtual std::map<std::string,TH1D*> GetScintShowerProfiles();
+  virtual std::map<std::string,TH1D*> GetScintShowerProfiles(Color_t _Color);
  
 };
 

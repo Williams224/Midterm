@@ -14,9 +14,11 @@ FiveSimRun::FiveSimRun(std::string _DataFileName,std::string _Name):ComparableOb
     std::string LeadProfileName="ScaledAbsorberOneProfile;"+std::to_string(i);
     TH1D* LeadProfile= (TH1D*)DataFile->Get(LeadProfileName.data());
     assert(LeadProfile!=NULL);
+    LeadProfile->SetDirectory(0);
     std::string ScintProfileName="ScaledAbsorberTwoProfile;"+std::to_string(i);
     TH1D* ScintProfile= (TH1D*)DataFile->Get(ScintProfileName.data());
     assert(ScintProfile!=NULL);
+    ScintProfile->SetDirectory(0);
     LeadShowerProfiles.insert(std::make_pair(std::to_string(i),LeadProfile));
     ScintShowerProfiles.insert(std::make_pair(std::to_string(i),ScintProfile));
   }
@@ -24,9 +26,6 @@ FiveSimRun::FiveSimRun(std::string _DataFileName,std::string _Name):ComparableOb
 }
 
 FiveSimRun::~FiveSimRun(){std::cout<<"FiveSim Destructor Called"<<std::endl;}
-std::map<std::string,TH1D*> FiveSimRun::GetLeadShowerProfiles(){return LeadShowerProfiles;}
-std::map<std::string,TH1D*> FiveSimRun::GetScintShowerProfiles(){return ScintShowerProfiles;}
-
 void FiveSimRun::WriteAll(){
 }
   

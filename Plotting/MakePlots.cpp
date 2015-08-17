@@ -7,11 +7,14 @@ int main(){
   TGraphErrors* Curvedopt1=opt1.GetCurvedRes(kMagenta+3);
   TGraphErrors* SRopt1=opt1.GetSamplingRatio(kGreen+2);
   TGraphErrors* ScintSamplingopt1=opt1.GetScintSampling(kOrange+8);
+  std::map<std::string,TH1D*> LeadShowers=opt1.GetLeadShowerProfiles(kRed);
   Gopt1->Write();
   Curvedopt1->Write();
   SRopt1->Write();
   ScintSamplingopt1->Write();
-
+  for(auto i=LeadShowers.begin();i!=LeadShowers.end();++i){
+    i->second->Write();
+  }
 
 
 }

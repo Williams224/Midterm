@@ -53,7 +53,17 @@ TGraphErrors* ComparableObject::GetLeadSamping(Color_t _Color){
 }
 
 std::map<std::string,TH1D*> ComparableObject::GetLeadShowerProfiles(Color_t _Color){
+  for(auto i=LeadShowerProfiles.begin();i!=LeadShowerProfiles.end();++i){
+    i->second->SetLineColor(_Color);
+    i->second->SetStats(kFALSE);
+  }
   return LeadShowerProfiles;
 }
 
-std::map<std::string,TH1D*> ComparableObject::GetScintShowerProfiles(){return ScintShowerProfiles;}
+std::map<std::string,TH1D*> ComparableObject::GetScintShowerProfiles(Color_t _Color){
+  for(auto i=ScintShowerProfiles.begin();i!=ScintShowerProfiles.end();++i){
+    i->second->SetLineColor(_Color);
+    i->second->SetStats(kFALSE);
+  }
+  return ScintShowerProfiles;
+}
