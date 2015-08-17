@@ -1,22 +1,14 @@
 #include"FiveSimRun.hpp"
 #include"SixSimRun.hpp"
+#include"Comparison.hpp"
 int main(){
-  FiveSimRun opt1("/Users/Tim/PhD/Sim/MidTerm/Data/TestEm3/95/LHCbOld_Save95.root","opt1");
-  SixSimRun SixOpt1("/Users/Tim/PhD/Sim/MidTerm/Data/TestEm3/LHCbNew_Save.root","Sixopt1");
+  FiveSimRun* FiveOpt1= new FiveSimRun("/Users/Tim/PhD/Sim/MidTerm/Data/TestEm3/95/LHCbOld_Save95.root","v9.5 opt1");
+  SixSimRun* SixOpt1= new SixSimRun("/Users/Tim/PhD/Sim/MidTerm/Data/TestEm3/LHCbNew_Save.root","v9.6 opt1");
+  Comparison *TheComparison= new Comparison("StraightComparison");
+  TheComparison->AddSimRun(SixOpt1);
+  TheComparison->AddSimRun(FiveOpt1);
   TFile* Out = new TFile("Output.root","RECREATE");
-  TGraphErrors* Gopt1=opt1.GetStraightRes(kRed+2);
-  TGraphErrors* Curvedopt1=opt1.GetCurvedRes(kMagenta+3);
-  TGraphErrors* SRopt1=opt1.GetSamplingRatio(kGreen+2);
-  TGraphErrors* ScintSamplingopt1=opt1.GetScintSampling(kOrange+8);
-  std::map<std::string,TH1D*> LeadShowers=opt1.GetLeadShowerProfiles(kRed);
-  Gopt1->Write();
-  Curvedopt1->Write();
-  SRopt1->Write();
-  ScintSamplingopt1->Write();
-  for(auto i=LeadShowers.begin();i!=LeadShowers.end();++i){
-    i->second->Write();
-  }
-
-  SixOpt1.GetStraightRes(kMagenta)->Write();
-
+  TheComparison->WriteStraightRes();
+  TheComparison->WriteCurvedRes();
+  
 }
