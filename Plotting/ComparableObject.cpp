@@ -3,6 +3,7 @@
 
 ComparableObject::ComparableObject(std::string _DataFileName, std::string _Name):DataFileName(_DataFileName),Name(_Name){
   DataFile=new TFile(DataFileName.data());
+  std::cout<<"Comparable object constructor called"<<std::endl;
 }
 
 
@@ -11,39 +12,48 @@ ComparableObject::~ComparableObject(){
   if(DataFile!=NULL){
     DataFile->Close();
   }
-  /*delete DataFile;
-  delete StraightRes;
-  delete CurvedRes;
-  delete SamplingRatio;
-  delete ScintSampling;
-  delete LeadSampling;*/
 }
 
-TGraphErrors* ComparableObject::GetStraightRes(){
+TGraphErrors* ComparableObject::GetStraightRes(Color_t _Color){
   assert(StraightRes!=NULL);
+  StraightRes->SetLineColor(_Color);
+  StraightRes->SetMarkerColor(_Color);
+  StraightRes->GetFunction("fitstraight")->SetLineColor(_Color);
   return StraightRes;
 }
 
-TGraphErrors* ComparableObject::GetCurvedRes(){
+TGraphErrors* ComparableObject::GetCurvedRes(Color_t _Color){
   assert(CurvedRes!=NULL);
+  CurvedRes->SetLineColor(_Color);
+  CurvedRes->SetMarkerColor(_Color);
+  CurvedRes->GetFunction("fit1")->SetLineColor(_Color);
   return CurvedRes;
+  
 }
 
-TGraphErrors* ComparableObject::GetSamplingRatio(){
+TGraphErrors* ComparableObject::GetSamplingRatio(Color_t _Color){
   assert(SamplingRatio!=NULL);
+  SamplingRatio->SetLineColor(_Color);
+  SamplingRatio->SetMarkerColor(_Color);
   return SamplingRatio;
 }
 
-TGraphErrors* ComparableObject::GetScintSampling(){
+TGraphErrors* ComparableObject::GetScintSampling(Color_t _Color){
   assert(ScintSampling!=NULL);
+  ScintSampling->SetLineColor(_Color);
+  ScintSampling->SetMarkerColor(_Color);
   return ScintSampling;
 }
 
-TGraphErrors* ComparableObject::GetLeadSamping(){
+TGraphErrors* ComparableObject::GetLeadSamping(Color_t _Color){
   assert(LeadSampling!=NULL);
+  LeadSampling->SetLineColor(_Color);
+  LeadSampling->SetMarkerColor(_Color);
   return LeadSampling;
 }
 
-std::map<int,TH1D*> ComparableObject::GetLeadShowerProfiles(){return LeadShowerProfiles;}
+std::map<std::string,TH1D*> ComparableObject::GetLeadShowerProfiles(Color_t _Color){
+  return LeadShowerProfiles;
+}
 
-std::map<int,TH1D*> ComparableObject::GetScintShowerProfiles(){return ScintShowerProfiles;}
+std::map<std::string,TH1D*> ComparableObject::GetScintShowerProfiles(){return ScintShowerProfiles;}

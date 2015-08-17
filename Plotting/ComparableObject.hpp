@@ -7,6 +7,7 @@
 #include"TH1D.h"
 #include<iostream>
 #include<assert.h>
+#include"TF1.h"
 
 class ComparableObject{
 protected:
@@ -15,8 +16,8 @@ protected:
   TFile* DataFile=NULL;
   TGraphErrors* StraightRes=NULL;
   TGraphErrors* CurvedRes=NULL;
-  std::map<int,TH1D*> LeadShowerProfiles;
-  std::map<int,TH1D*> ScintShowerProfiles;
+  std::map<std::string,TH1D*> LeadShowerProfiles;
+  std::map<std::string,TH1D*> ScintShowerProfiles;
   TGraphErrors* SamplingRatio=NULL;
   TGraphErrors* ScintSampling=NULL;
   TGraphErrors* LeadSampling=NULL;
@@ -24,13 +25,13 @@ protected:
   ComparableObject(std::string _DataFileName,std::string _Name);
   virtual ~ComparableObject();
   std::string GetName(){return Name;}
-  virtual TGraphErrors* GetStraightRes();
-  virtual TGraphErrors* GetCurvedRes();
-  virtual TGraphErrors* GetSamplingRatio();
-  virtual TGraphErrors* GetScintSampling();
-  virtual TGraphErrors* GetLeadSamping();
-  virtual std::map<int,TH1D*> GetLeadShowerProfiles();
-  virtual std::map<int,TH1D*> GetScintShowerProfiles();
+  virtual TGraphErrors* GetStraightRes(Color_t _Color);
+  virtual TGraphErrors* GetCurvedRes(Color_t _Color);
+  virtual TGraphErrors* GetSamplingRatio(Color_t _Color);
+  virtual TGraphErrors* GetScintSampling(Color_t _Color);
+  virtual TGraphErrors* GetLeadSamping(Color_t _Color);
+  virtual std::map<std::string,TH1D*> GetLeadShowerProfiles(Color_t _Color);
+  virtual std::map<std::string,TH1D*> GetScintShowerProfiles();
  
 };
 
