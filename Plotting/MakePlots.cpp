@@ -1,7 +1,8 @@
 #include"FiveSimRun.hpp"
-
+#include"SixSimRun.hpp"
 int main(){
   FiveSimRun opt1("/Users/Tim/PhD/Sim/MidTerm/Data/TestEm3/95/LHCbOld_Save95.root","opt1");
+  SixSimRun SixOpt1("/Users/Tim/PhD/Sim/MidTerm/Data/TestEm3/LHCbNew_Save.root","Sixopt1");
   TFile* Out = new TFile("Output.root","RECREATE");
   TGraphErrors* Gopt1=opt1.GetStraightRes(kRed+2);
   TGraphErrors* Curvedopt1=opt1.GetCurvedRes(kMagenta+3);
@@ -16,5 +17,6 @@ int main(){
     i->second->Write();
   }
 
+  SixOpt1.GetStraightRes(kMagenta)->Write();
 
 }
