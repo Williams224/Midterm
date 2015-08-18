@@ -1,6 +1,7 @@
 % $Id: introduction.tex 65669 2015-01-09 14:55:20Z tgershon $
 
 \section{Simulation}
+\setcounter{secnumdepth}{5}
 \label{sec:Simulation}
 It is crucial to any particle physics experiment to understand and be able to calculate the behavoiur of the detector and apparatus being used.  No detector is perfect, therefore only a fraction of the particles created in the process being studied actually get fully measured and reconstructued.  From this subset of detected particles one has to infer the total number of particles created and any relevant distributions related to the measurement in question, the only practical way to calculate these detector efficiencies is with a full detector simulation.  One area of the \lhcb physics programme where detector simulation is of particularly great importance is semi leptonic decays involving neutrinos.  Due to the \lhcb detector not being hermetic neutrinos escape the detector, consequently the only way to perform analyses involving neutrinos is with template fits based on monte carlo predictions.  An example of an analysis exploiting this strategy is the measurement of \Vub using \Lb $\rightarrow$ \proton \muon $\nu$ decays, which is a result considered to be of high importance \cite{LHCb-PAPER-2015-013}.  A full detector simulation is also crucial for detector performance studies, understanding backgrounds and comparisons between theory and experiment.
 
@@ -18,8 +19,6 @@ The object orientated design of \geant means that it is also very easy to have a
 \paragraph{Production Cuts}\label{sec:products}When a detector simulation takes place many secondary particle are created through processes such as bremstrahlung and pair production.  Each of these particles then has to be tracked and simulated by \geant which takes a non negligable amount of CPU time. However, a lot of these particles are low energy particles that contribute very little to the overall result of the simulation.  Therefore, a minimum range cut is applied in \geant in order to minimise the amount of CPU time that is wasted tracking and simlutaing particles that have a negligible effect on the end result.  This requires any secondary particles created to travel a minimum distance for them to be simulated by \geant.  In \lhcb this cut has been chosen as 5mm, a distance that has been found to reduce CPU time sufficiently but have a small enough impact on the simulation result. By default, production cuts are applied to the bremsstrahlung, ionisation and e+e- pair production processes.  However, one can use the \textit{applycuts} option which causes production cuts to also be applyed to the photoelectric effect, compton scattering and gamma conversion.
 
 %There are however studies on going to investigate whether changing range cuts in certain sub detectors can improve agreement between data and MC without an unfeasible increase in CPU time %Cite jimmys thesis.
-
-
 
 \subsection{Simple Calorimeter Test}
 \label{sec:Simple Calorimeter Test}
@@ -139,6 +138,7 @@ The precise cause of these discrepancies needs to be understood because there co
 After contacting the \geant collaboration, the cause of the observed discrepancy is believed to lie with the changes to the multiple scattering model.  In fact, the \geant collaboration recommended that the multiple scattering models used in the \lhcb private PL are changed from \textit{UrbanMsc95} to \textit{UrbanMsc93} below 100MeV and \textit{WentzelVI} above 100MeV.  This would bring the simulation of multiple scattering within the LHCb private PL inline with the \geant \textit{emstandard opt1} physics list.
 
 \subsubsection{Comparison of Physics Lists}
+\label{sec:Comaprison of PL}
 As the \geant collaboration had recommended a change to the LHCb private PL it was decided a thorough investigation of other PL options would be carried out using the simple calorimeter test.  This would be done using \geant version 9.6.p04, so that investigations directly related to the next version of the \lhcb simulation package could be carried out.  The results of these investigations would help to inform the decision of which PL to use for the next release of \gauss.  
 
 The following physics lists supplied by \geant were investigated:
@@ -157,7 +157,10 @@ The following physics lists supplied by \geant were investigated:
 
 As well as the \geant supplied PLs there is also the \lhcb private physics list to consider.  This is simply \textit{emstandard option1} with the \textit{applycuts} option disabled.  However, it is based on the \textit{opt1} PL from \geant v9.4 which differs to both the v9.5 and v9.6 \textit{op1} PLs.  Therefore, rather than just updating the multiple scattering model used in the \lhcb private PL (as suggested by the \geant collaboration  and discussed in section \ref{sec:Discussionofresultsone}) it was decided that the new version of the \lhcb private PL would be the \textit{opt1} PL from v9.6 with the \textit{ApplyCuts} option disabled. Consequently, this study investigates both the old version of the \lhcb private PL (LHCbOld) and the new version (LHCbNew).
 
+\paragraph{Fractional Resolution}
+The first quantity used to test all the PLs described above was, again, the fractional resolution of the model ECAL.  Just as described in section \ref{sec:Fractional Resolution Investigation}, 10000 electrons were fired into the model ECAL at 13 different energies between 1.78GeV and 44.44GeV.  The same procedure as described in section \ref{sec:Fractional Resolution} was again used to extract $\frac{\sigma}{E}$ for each energy and a minimum $\chi^2$ fit to equation \ref{eq:fitfr} was performed to obtain the values of 'a' and 'c'.  The simulation was run with all of the PLs described in section \ref{sec:Comparison of PL}, allowing results to be compared.
 
+Figure \ref{fig:AllPLStraightFR}
 
 
 %Simple Calorimeter Test

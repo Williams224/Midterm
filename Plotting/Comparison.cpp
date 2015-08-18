@@ -3,9 +3,13 @@
 Comparison::Comparison(std::string _Name):ComparisonName(_Name){
   Colors.push_back(kRed);
   Colors.push_back(kBlue);
-  Colors.push_back(kGreen+2);
+  Colors.push_back(kGreen);
   Colors.push_back(kMagenta);
   Colors.push_back(kOrange);
+  Colors.push_back(kCyan+1);
+  Colors.push_back(kOrange+4);
+  Colors.push_back(kGreen+3);
+  Colors.push_back(kYellow+3);
   FitEquation= new TLatex();
   FitEquation->SetTextSize(0.03);
 
