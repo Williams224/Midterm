@@ -159,10 +159,48 @@ As well as the \geant supplied PLs there is also the \lhcb private physics list 
 
 \paragraph{Fractional Resolution}
 The first quantity used to test all the PLs described above was, again, the fractional resolution of the model ECAL.  Just as described in section \ref{sec:Fractional Resolution Investigation}, 10000 electrons were fired into the model ECAL at 13 different energies between 1.78GeV and 44.44GeV.  The same procedure as described in section \ref{sec:Fractional Resolution} was again used to extract $\frac{\sigma}{E}$ for each energy and a minimum $\chi^2$ fit to equation \ref{eq:fitfr} was performed to obtain the values of 'a' and 'c'.  The simulation was run with all of the PLs described in section \ref{sec:Comparison of PL}, allowing results to be compared.
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{LHCbPLsStraight.pdf}
+  \caption{A plot of fractional resolution against $\frac{1}{\sqrt{E}}$ for \geant v9.5 with the old PL and v9.6 with the new and old physics list options}
+  \label{fig:LHCbPLStraightFR}
+\end{figure}
+Figure \ref{fig:LHCbPLStraightFR} shows the fractional resolution results with \lhcb private PLs, the result from \geant v9.5 is included for comparison.  A similar comparison is also made between all of the standard PLs supplied by the \geant collaboration, which is shown in \ref{fig:BoxPLStraightFR}.  A summary of all fit results is shown in table \ref{tab:AllPL}
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{BoxStraightRes.pdf}
+  \caption{A plot of fractional resolution against $\frac{1}{\sqrt{E}}$ for \geant v9.6 with all of the \textit{emstandard} PLs.}
+  \label{fig:BoxPLStraightFR}
+\end{figure}
 
-Figure \ref{fig:AllPLStraightFR}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|c|c|}
+      \hline
+      PL & A term & C term & $\frac{\chi^2}{ndf}$  \\ \hline
+      v9.5 LHCbOld & 0.0952 $\pm$ 0.0003 & 0.0051 $\pm$ 0.0003 & 1.05 \\ \hline
+      LHCbOld & 0.0922 $\pm$ 0.0003 & 0.0049 $\pm$ 0.0003 & 1.80 \\ \hline 
+      LHCbNew & 0.0910 $\pm$ 0.0002 & 0.0049 $\pm$ 0.0003 & 1.55 \\ \hline
+      opt0 & 0.0794 $\pm$ 0.0002 & 0.0041 $\pm$ 0.0003 & 1.39 \\ \hline
+      opt1 & 0.0953 $\pm$ 0.0003 & 0.0048 $\pm$ 0.0004 & 0.91 \\ \hline
+      opt2 & 0.0953 $\pm$ 0.0003 & 0.0048 $\pm$ 0.0003 & 0.64 \\ \hline 
+      opt3 & 0.0768 $\pm$ 0.0002 & 0.0037 $\pm$ 0.0003 & 0.67 \\ \hline 
+      opt4 & 0.0764 $\pm$ 0.0002 & 0.0045 $\pm$ 0.0002 & 1.60 \\ \hline
+  \end{tabular}
+  \caption{Fractional resolution results for comparison of \geant physics lists.  These results are obtained from the fits shown in figures \ref{fig:LHCbPLStraightFR} and \ref{fig:BoxPLStraightFR}}
+  \label{tab:results}
+\end{table}
 
 
+
+
+
+
+This plot shows that updating the \lhcb private PL to follow \textit{emstandard opt1} has, in fact, increased the discrepancy with v9.5.  Although this initially seems troublesome, one should not necessarily expect the results from the new PL to match those of the old PL and \geant version because progression fo results is expcected.  There is nothing to say the old PL would show the best agreement with data, in fact one should expect the newer version to be the most accurate.  It is, however, important that the progression of results is observed and calibrated for.
+
+A direct comparison with data is not possible in this scenario due to limited test beam data and the absence of electronic noise in this simplifed scenario.   It is known that the \lhcb private PL has to use a simplified and consequently bias multiple scattering model due to CPU time constraints.  Therefore, the PLs that do not use a simplifed multiple scattering model should provide the best agreement with data and can consequently be used to check if progress towards greater accuracy has been made.
+
+Figure \ref{fig:BoxPLStraightFR} shows 
 %Simple Calorimeter Test
 %----Calorimetry Background
 %----Comparison of Geant4 versions
