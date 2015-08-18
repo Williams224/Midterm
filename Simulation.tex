@@ -15,7 +15,11 @@ The next stage of the simulation process is the transportation of the generated 
 
 The object orientated design of \geant means that it is also very easy to have a variety of models avaiable for each interaction process; it is well known that the model giving the optimum agreement with data varies for different energy ranges and different particle types.  Consequently, it is important to be able to tailor the simulation to the specific scenario under investigation.  However, with the large number of interaction processes simulated and the large array of long lived particles to consider even a small selection of models for each process and particle would quickly lead to a very extensive range of possible configurations for the same scenario.  Therefore, \geant provides a set of physics lists (PL) each of which specifies a fixed set of models designed to be optimal for a smaller range of scenarios.  For example, there are PLs available for low energy scenarios which would specify models that show the best agreement with data at lower energy.  The effect of PL choice for scenarios relevant to \lhcb also forms part of the study detailed in this report.
 
-\paragraph{Production Cuts} When a detector simulation takes place many secondary particle are created through processes such as bremstrahlung and pair production.  Each of these particles then has to be tracked and simulated by \geant which takes a non negligable amount of CPU time. However, a lot of these particles are low energy particles that contribute very little to the overall result of the simulation.  Therefore, a minimum range cut is applied in \geant in order to minimise the amount of CPU time that is wasted tracking and simlutaing particles that have a negligible effect on the end result.  This requires any secondary particles created to travel a minimum distance for them to be simulated by \geant.  In \lhcb this cut has been chosen as 5mm, a distance that has been found to reduce CPU time sufficiently but have a small enough impact on the simulation result.  There are however studies on going to investigate whether changing range cuts in certain sub detectors can improve agreement between data and MC without an unfeasible increase in CPU time %Cite jimmys thesis.
+\paragraph{Production Cuts}\label{sec:products}When a detector simulation takes place many secondary particle are created through processes such as bremstrahlung and pair production.  Each of these particles then has to be tracked and simulated by \geant which takes a non negligable amount of CPU time. However, a lot of these particles are low energy particles that contribute very little to the overall result of the simulation.  Therefore, a minimum range cut is applied in \geant in order to minimise the amount of CPU time that is wasted tracking and simlutaing particles that have a negligible effect on the end result.  This requires any secondary particles created to travel a minimum distance for them to be simulated by \geant.  In \lhcb this cut has been chosen as 5mm, a distance that has been found to reduce CPU time sufficiently but have a small enough impact on the simulation result. By default, production cuts are applied to the bremsstrahlung, ionisation and e+e- pair production processes.  However, one can use the \textit{applycuts} option which causes production cuts to also be applyed to the photoelectric effect, compton scattering and gamma conversion.
+
+%There are however studies on going to investigate whether changing range cuts in certain sub detectors can improve agreement between data and MC without an unfeasible increase in CPU time %Cite jimmys thesis.
+
+
 
 \subsection{Simple Calorimeter Test}
 \label{sec:Simple Calorimeter Test}
@@ -88,45 +92,39 @@ In order to understand the unexpected results described in section \ref{sec:Frac
 
 Again, electrons at 13 different energies between 1.78GeV and 44.44GeV were fired into the ECAL using both \geant versions.  At each energy, shower profiles for active and passive layers were considered seperately and the profiles resulting from each version of \geant were plotted on top of each other for comparison.  The results at 1.78GeV and 44.44 GeV are shown in figures \ref{fig:1.78sp} and \ref{fig:44.44sp} respectively, all other energies are shown in \ref{ap:sp}.
 \begin{figure}[h]
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{ShowerProfileLead44.pdf}
-    \caption{Normalised shower profile for electrons in Lead at 44.44GeV}
-    \label{fig:44.44splead}
-  \end{subfigure}
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{ShowerProfileScintillator44.pdf}
-    \caption{Normalised shower profile for electrons in Scintillator at 44.44GeV}
-    \label{fig:44.44spscint}
-  \end{subfigure}
-  \caption{Normalised shower profiles}
-  \label{fig:44.44sp}
+  \centering
+  \includegraphics[width=\textwidth]{ShowerProfiles178.pdf}
+  \caption{A comparison of shower profiles between \geant version 9.5 and 9.6 using the \lhcb private physics list for 1.78GeV electrons.  These profiles are normalised.}
+    \label{fig:1.78sp}
 \end{figure}
 \begin{figure}[h]
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{ShowerProfileLead178.pdf}
-    \caption{Normalised shower profile for electrons in Lead at 1.78GeV}
-    \label{fig:1.78splead}
-  \end{subfigure}
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{ShowerProfileScintillator178.pdf}
-    \caption{Normalised shower profile for electrons in Scintillator at 1.78GeV}
-    \label{fig:1.78spscint}
-  \end{subfigure}
-  \caption{Normalised shower profiles}
-  \label{fig:1.78sp}
+  \centering
+  \includegraphics[width=\textwidth]{ShowerProfiles44.pdf}
+  \caption{A comparison of shower profiles between \geant version 9.5 and 9.6 using the \lhcb private physics list at 44.44GeV electrons. These profiles are normalised.}
+    \label{fig:44.44sp}
 \end{figure}
-%PUT SHOWER PROFILES HERE
+
 It is clear from these shower profiles that \geant version 9.6.p04 is depositing more energy in active layers and less energy in passive layers compared to \geant 9.5.p02.  This pattern is observed at all energies simulated.
 
-To further investigate this behaviour the shower profiles were split by particle type; seperate shower profiles were plotted for electrons, positrons and photons.  These results can be seen in figures \ref{fig:1.78spseperate}  and \ref{fig:44.44spseperate}.
+%To further investigate this behaviour the shower profiles were split by particle type; seperate shower profiles were plotted for electrons, positrons and photons.  These results can be seen in figures \ref{fig:1.78spseperate}  and \ref{fig:44.44spseperate}.
 %PUT SEPERATE SHOWER PROFILES HERE
-These reuslts show that the observed discrepancy can not be attributed to the way in which photons are modelled because the total energy deposited by photons is negligable and would therefore not be able to influence the overall shower profiles.
+%These reuslts show that the observed discrepancy can not be attributed to the way in which photons are modelled because the total energy deposited by photons is negligable and would therefore not be able to influence the overall shower profiles.
 
-In order to quantify further this observed change in behaviour, the ECAL sampling fraction as a function of energy was studied for both \geant versions.  The sampling fraction, in this context, is defined as the energy deposited in active layers (visible energy) divided by the total energy deposited in the ECAL.  The total energy deposited in each type of material was obtained by integrating the shower profiles over all layers.  The resulting sampling fractions as a function of energy are shown in \ref{fig:sfcomp}. To further this quantification the ratio of energy deposited in active layers to passive layers was also plotted as a function of energy for both \geant versions and the results are shown in figure \ref{fig:ratiocomp}.  The results from both of these plots are summarised in table \ref{tab:sfcomp}.
+In order to quantify further this observed change in behaviour, the ECAL sampling fraction as a function of energy was studied for both \geant versions.  The sampling fraction, in this context, is defined as the energy deposited in active layers (visible energy) divided by the incident particle energy.  The total energy deposited in each type of material was obtained by integrating the shower profiles over all layers.  The resulting sampling fraction as a function of energy is shown in \ref{fig:sfcomp}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{SamplingFractionVersions.pdf}
+  \caption{A plot of sampling fraction as a function of energy for both versions of \geant}
+  \label{fig:sfcomp}
+\end{figure}
+To further this quantification the ratio of energy deposited in active layers to passive layers was also plotted as a function of energy for both \geant versions and the results are shown in figure \ref{fig:ratiocomp}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{SamplingRatioVersions.pdf}
+  \caption{A plot of the ratio of energy deposited in active layers to passive layers as a function of energy for both \geant versions}
+  \label{fig:ratiocomp}
+\end{figure}
+The results from the investigation of sampling fraction and sampling ratio are summarised in table \ref{tab:sfcomp}.
 
 \paragraph{Discussion of results for \geant version comparison}
 \label{sec:Discussionofresultsone}
@@ -143,12 +141,21 @@ After contacting the \geant collaboration, the cause of the observed discrepancy
 \subsubsection{Comparison of Physics Lists}
 As the \geant collaboration had recommended a change to the LHCb private PL it was decided a thorough investigation of other PL options would be carried out using the simple calorimeter test.  This would be done using \geant version 9.6.p04, so that investigations directly related to the next version of the \lhcb simulation package could be carried out.  The results of these investigations would help to inform the decision of which PL to use for the next release of \gauss.  
 
-
 The following physics lists supplied by \geant were investigated:
 \begin{itemize}
-  \item \textit{emstandard option1}
-    This physics list is designed for HEP experiments but is described as \cms focused.
+\item \textit{emstandard option0}
+  This is the default electromagnetic phyics list used by \geant (in general).  This is designed to give optimal accuracy at medium and high energies, which are the typical energies present at HEP experiments.  In version 9.6 this PL uses the \textit{UrbanMsc95} multiple scattering model.
+\item \textit{emstandard option1}
+  This physics list is designed for HEP experiments but is described as \cms focused. This PL has moved back to using the \textit{UrbanMsc93} multiple scattering model below 100MeV in version 9.6.  It also uses a simplified multiple scattering model which applies limitations on the size of a single step of the simulation process, this is known to cause bias but significantly reduces the CPU time required.  The apply cuts option, as described in \ref{sec:products}, is also used.
+\item \textit{emstandard option2}
+  This physics list is also designed for HEP experiements but is described as \lhcb focused.  It uses the \textit{UrbanMsc93} multiple scattering model and uses a different angular distribution generator for bremsstrahlung.
+\item \textit{emstandard option3}
+  This PL provides the best accuracy of charged particle tracking.  It uses the \textit{UrbanMscModel96} for multiple scattering.
+\item \textit{emstandard option 4}
+  This PL, like option 3, is designed to provide the best accuracy for charged particle tracking and also uses the \textit{UrbanMscModel96} for multiple scattering.  However, it is designed to provide the highest accuracy at medium and low energies.
 \end{itemize}
+
+As well as the \geant supplied PLs there is also the \lhcb private physics list to consider.  This is simply \textit{emstandard option1} with the \textit{applycuts} option disabled.  However, it is based on the \textit{opt1} PL from \geant v9.4 which differs to both the v9.5 and v9.6 \textit{op1} PLs.  Therefore, rather than just updating the multiple scattering model used in the \lhcb private PL (as suggested by the \geant collaboration  and discussed in section \ref{sec:Discussionofresultsone}) it was decided that the new version of the \lhcb private PL would be the \textit{opt1} PL from v9.6 with the \textit{ApplyCuts} option disabled. Consequently, this study investigates both the old version of the \lhcb private PL (LHCbOld) and the new version (LHCbNew).
 
 
 

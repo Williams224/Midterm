@@ -62,7 +62,7 @@ void Comparison::WriteStraightRes(){
     StraightLeg->AddEntry(s->second->GetStraightRes(CurrentColor),(s->second->GetName()).data(),"LPE");
     StraightTitle=StraightTitle+(s->second->GetName())+", ";
   }
-  StraightTitle=StraightTitle+"with 10000 events";
+  StraightTitle=StraightTitle+" fractional resolution with 10000 events";
   StraightMG->Draw("AP");
   StraightMG->SetTitle(StraightTitle.data());
   StraightMG->GetYaxis()->SetTitle("#frac{#sigma}{E}");
@@ -88,7 +88,7 @@ void Comparison::WriteCurvedRes(){
     CurvedLeg->AddEntry(s->second->GetCurvedRes(CurrentColor),(s->second->GetName()).data(),"LPE");
     CurvedTitle=CurvedTitle+(s->second->GetName())+", ";
   }
-  CurvedTitle=CurvedTitle+"with 10000 events";
+  CurvedTitle=CurvedTitle+" fractional resolution with 10000 events";
   CurvedMG->Draw("AP");
   CurvedMG->SetTitle(CurvedTitle.data());
   CurvedMG->GetYaxis()->SetTitle("#frac{#sigma}{E}");
@@ -113,6 +113,7 @@ void Comparison::WriteSamplingRatio(){
     SamplingTitle=SamplingTitle+(s->second->GetName())+", ";
   }
   SamplingRatioMG->Draw("AP");
+  SamplingTitle=SamplingTitle+"sampling ratio with 10000 events";
   SamplingRatioMG->SetTitle(SamplingTitle.data());
   SamplingRatioMG->GetYaxis()->SetTitle("Scintillator E/Lead E");
   SamplingRatioMG->GetXaxis()->SetTitle("Incident Energy/GeV");
@@ -133,7 +134,7 @@ void Comparison::WriteScintSampling(){
     ScintSamplingLeg->AddEntry(s->second->GetScintSampling(CurrentColor),(s->second->GetName()).data(),"LPE");
     ScintSamplingTitle=ScintSamplingTitle+(s->second->GetName())+", ";
   }
-  ScintSamplingTitle=ScintSamplingTitle+" with 10000 events";
+  ScintSamplingTitle=ScintSamplingTitle+" sampling fraction with 10000 events";
   ScintSamplingMG->Draw("AP");
   ScintSamplingLeg->Draw();
   ScintSamplingMG->SetTitle(ScintSamplingTitle.data());
