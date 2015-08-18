@@ -15,7 +15,7 @@ The next stage of the simulation process is the transportation of the generated 
 
 The object orientated design of \geant means that it is also very easy to have a variety of models avaiable for each interaction process; it is well known that the model giving the optimum agreement with data varies for different energy ranges and different particle types.  Consequently, it is important to be able to tailor the simulation to the specific scenario under investigation.  However, with the large number of interaction processes simulated and the large array of long lived particles to consider even a small selection of models for each process and particle would quickly lead to a very extensive range of possible configurations for the same scenario.  Therefore, \geant provides a set of physics lists (PL) each of which specifies a fixed set of models designed to be optimal for a smaller range of scenarios.  For example, there are PLs available for low energy scenarios which would specify models that show the best agreement with data at lower energy.  The effect of PL choice for scenarios relevant to \lhcb also forms part of the study detailed in this report.
 
-\paragraph{Production Cuts} When a detector simulation takes place many secondary particle are created through processes such as bremstrahlung and pair production.  Each of these particles then has to be tracked and simulated by \geant which takes a non negliagable amount of CPU time. However, a lot of these particles are low energy particles that contribute very little to the overall result of the simulation.  Therefore, a minimum range cut is applied in \geant in order to minimise the amount of CPU time that is wasted tracking and simlutaing particles that have a negligible effect on the end result.  This requires any secondary particles created to travel a minimum distance for them to be simulated by \geant.  In \lhcb this cut has been chosen as 5mm, a distance that has been found to reduce CPU time sufficiently but have a small enough impact on the simulation result.  There are however studies on going to investigate whether changing range cuts in certain sub detectors can improve agreement between data and MC without an unfeasible increase in CPU time %Cite jimmys thesis.
+\paragraph{Production Cuts} When a detector simulation takes place many secondary particle are created through processes such as bremstrahlung and pair production.  Each of these particles then has to be tracked and simulated by \geant which takes a non negligable amount of CPU time. However, a lot of these particles are low energy particles that contribute very little to the overall result of the simulation.  Therefore, a minimum range cut is applied in \geant in order to minimise the amount of CPU time that is wasted tracking and simlutaing particles that have a negligible effect on the end result.  This requires any secondary particles created to travel a minimum distance for them to be simulated by \geant.  In \lhcb this cut has been chosen as 5mm, a distance that has been found to reduce CPU time sufficiently but have a small enough impact on the simulation result.  There are however studies on going to investigate whether changing range cuts in certain sub detectors can improve agreement between data and MC without an unfeasible increase in CPU time %Cite jimmys thesis.
 
 \subsection{Simple Calorimeter Test}
 \label{sec:Simple Calorimeter Test}
@@ -24,7 +24,7 @@ The first test that has been setup is an extended electromagnetic \geant example
 %\subsubsection{Calorimetry Background}
 %\label{sec:Calorimetry Background}
 \subsubsection{Comparison of \geant version 9.5.p02 and 9.6.p04}
-The basic principle behind this comparison was to run this example within both \geant versions and compare selected results that could have implications for \lhcb.  Firstly, checks were made to ensure that the implementation of the example was unchanged between versions to ensure any discrepencies could be attributed to changes global to the \geant framework and not just a change in this specific example.  In order to make this a direct comparison between what is currently implemented and what will be implemented the example was customised to run with the \lhcb private PL.  Therefore, the same physics models are being used in both versions, but the models themselves could have changed between versions.
+The basic principle behind this comparison was to run this example within both \geant versions and compare selected results that could have implications for \lhcb.  Firstly, checks were made to ensure that the implementation of the example was unchanged between versions to ensure any discrepencies could be attributed to changes global to the \geant framework and not just a change in this specific example.  In order to make this a direct comparison between what is currently implemented and what will be implemented, the example was customised to run with the \lhcb private PL.  Therefore, the same physics models are being used in both versions, but the models themselves could have changed between versions.
 
 \paragraph{Fractional Resolution Investigation}
 \label{sec:Fractional Resolution Investigation}
@@ -39,7 +39,7 @@ The 'a' term in equation \ref{eq:fr} arises from statistical fluctuations in the
 
 The 'b' term in equation \ref{eq:fr} arises due to electronic noise which causes energy independent resolution effects.  However, this is not simulated in this study and will therefore not be considered.  The 'c' term in equation \ref{eq:fr} arises due to shower leakage from the ECAL.  At a given energy the amount of energy lost from the ECAL is subject to event by event fluctuations, which leads to broadening of the resolution.  However, the total amount of energy lost from the ECAL is proportional to the energy of the incident particle and this dominates over the event by event effects.  This leads to the standard deviation of measured energies due to shower leakage being proportinal to incident energy, and consequently energy indpendent for the fractional resolution.
 
-The first step towards obtaining the fractional resolution of the model ECAL was to fire electrons into the ECAL at several fixed energies.  At each energy a histogram was produced showing the distribution of energy deposited in active regions of the ECAL per event.  This distribution is predicted to be gaussian, therefore a minimum chi squared fit of a gaussian function was performed at each energy to obtain the mean and standard deviation of the distribution. An example of one of these fits is shown in figure \ref{fig:Gauss}.  This was performed at 13 different energies between 1.78GeV and 44.44GeV, this range was chosen because it includes the majority of electron energies expected at \lhcb.
+The first step towards obtaining the fractional resolution of the model ECAL was to fire electrons into the ECAL at several fixed energies.  At each energy a histogram was produced showing the distribution of energy deposited in active regions of the ECAL.  This distribution is predicted to be gaussian, therefore a minimum chi squared fit of a gaussian function was performed at each energy to obtain the mean and standard deviation of the distribution. An example of one of these fits is shown in figure \ref{fig:Gauss}.  This was performed at 13 different energies between 1.78GeV and 44.44GeV, this range was chosen because it includes the majority of electron energies expected at \lhcb.
 
 \begin{figure}[h!]
   \centering
@@ -57,13 +57,13 @@ was performed with the parameters 'a' and 'c' left floating as these are to be d
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{StraightCompareUse.pdf}
-  \caption{Comparison of observed fractional resolution in \geant v9.5 and v9.6}
+  \caption{A plot of fractional resolution against $\frac{1}{\sqrt{E}}$ comparing versions of \geant. The fit is the function given in equation \ref{eq:fitfr}.}
   \label{fig:straightres}
 \end{figure}
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{CurvedCompare.pdf}
-  \caption{Comparison of observed fractional resolution in \geant v9.5 and v9.6}
+  \caption{A plot of fractional resolution against $E$ comparing versions of \geant. The fit is the function given in equation \ref{eq:fitfr}.}
   \label{fig:coolres}
 \end{figure}
 
@@ -76,7 +76,7 @@ was performed with the parameters 'a' and 'c' left floating as these are to be d
       C term    & 0.0051$\pm$0.0003 & 0.0049$\pm$0.0003 & consistent \\ \hline
       $\frac{\chi^2}{ndf}$   &1.798  & 1.048 &  \\ \hline
   \end{tabular}
-  \caption{Fractional resolution results for comparison of \geant versions}
+  \caption{Fractional resolution results for comparison of \geant versions.  These results are obtained from the fits shown in figures \ref{fig:straightres} and \ref{fig:coolres}}
   \label{tab:results}
 \end{table}
 
@@ -86,7 +86,7 @@ It is clear from these fits that there is a significant discrepancy in the stati
 \label{sec:Sampling Fraction and Shower Profile Investigations}
 In order to understand the unexpected results described in section \ref{sec:Fractional Resolution Investigation} it was decided that a study of the shower profiles in both active and passive layers of the calorimeter would be performed.  A shower profile is a plot of dE/dX against X, where X is the longitudinal depth from the front face of the calorimeter and E is the energy deposited.  Although X is often expressed in terms of radiation lengths, in this case the layer number was used because the shower profiles were in bins corresponding to the thickness of one layer of the ECAL.
 
-Again, electrons at 13 different energies between 1.56GeV and 44.44GeV were fired into the ECAL using both \geant versions.  At each energy, shower profiles for active and passive layers were considered seperately and the profiles resulting from each version of \geant were plotted on top of each other for comparison.  The results at 1.56GeV and 44.44 GeV are shown in figures \ref{fig:1.56sp} and \ref{fig:44.44sp} respectively, all other energies are shown in \ref{ap:sp}.
+Again, electrons at 13 different energies between 1.78GeV and 44.44GeV were fired into the ECAL using both \geant versions.  At each energy, shower profiles for active and passive layers were considered seperately and the profiles resulting from each version of \geant were plotted on top of each other for comparison.  The results at 1.78GeV and 44.44 GeV are shown in figures \ref{fig:1.78sp} and \ref{fig:44.44sp} respectively, all other energies are shown in \ref{ap:sp}.
 \begin{figure}[h]
   \begin{subfigure}{.5\textwidth}
     \centering
@@ -108,21 +108,21 @@ Again, electrons at 13 different energies between 1.56GeV and 44.44GeV were fire
     \centering
     \includegraphics[width=\linewidth]{ShowerProfileLead178.pdf}
     \caption{Normalised shower profile for electrons in Lead at 1.78GeV}
-    \label{fig:44.44splead}
+    \label{fig:1.78splead}
   \end{subfigure}
   \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\linewidth]{ShowerProfileScintillator178.pdf}
     \caption{Normalised shower profile for electrons in Scintillator at 1.78GeV}
-    \label{fig:44.44spscint}
+    \label{fig:1.78spscint}
   \end{subfigure}
   \caption{Normalised shower profiles}
-  \label{fig:44.44sp}
+  \label{fig:1.78sp}
 \end{figure}
 %PUT SHOWER PROFILES HERE
 It is clear from these shower profiles that \geant version 9.6.p04 is depositing more energy in active layers and less energy in passive layers compared to \geant 9.5.p02.  This pattern is observed at all energies simulated.
 
-To further investigate this behaviour the shower profiles were split by particle type; seperate shower profiles were plotted for electrons, positrons and photons.  These results can be seen in figures \ref{fig:1.56spseperate}  and \ref{fig:44.44spseperate}.
+To further investigate this behaviour the shower profiles were split by particle type; seperate shower profiles were plotted for electrons, positrons and photons.  These results can be seen in figures \ref{fig:1.78spseperate}  and \ref{fig:44.44spseperate}.
 %PUT SEPERATE SHOWER PROFILES HERE
 These reuslts show that the observed discrepancy can not be attributed to the way in which photons are modelled because the total energy deposited by photons is negligable and would therefore not be able to influence the overall shower profiles.
 
