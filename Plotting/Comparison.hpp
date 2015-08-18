@@ -7,8 +7,20 @@
 #include"TLatex.h"
 #include"TText.h"
 #include"TCanvas.h"
+#include <sstream>
+#include<iomanip>
+
+template <typename T>
+std::string to_string_with_precision(const T a_value, const int n = 6)
+{
+    std::ostringstream out;
+    out << std::setprecision(n) << std::fixed<<a_value;
+    return out.str();
+}
+
 class Comparison{
 private:
+  std::map<int,double> Energies;
   std::string ComparisonName;
   std::map<std::string,ComparableObject*> SimRuns;
   std::vector<Color_t> Colors;
@@ -43,7 +55,7 @@ private:
   TLegend* LeadSamplingLeg=NULL;
   std::string LeadSamplingTitle;
   //==============================Shower Profiles=========================
-  std::map<std::string,TCanvas*> Canvases;
+  
   
 
 public:

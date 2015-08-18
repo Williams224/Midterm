@@ -13,4 +13,5 @@ int main(){
   TheComparison->WriteSamplingRatio();
   TheComparison->WriteScintSampling();
   TheComparison->WriteLeadSampling();
+  TheComparison->WriteShowers();
 }

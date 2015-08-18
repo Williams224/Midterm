@@ -16,7 +16,20 @@ Comparison::Comparison(std::string _Name):ComparisonName(_Name){
   T3->SetTextSize(0.03);
   L3= new TLatex();
   L3->SetTextSize(0.03);
-  
+
+  Energies.insert(std::make_pair(1,44.44));
+  Energies.insert(std::make_pair(2,25.0));
+  Energies.insert(std::make_pair(3,16.0));
+  Energies.insert(std::make_pair(4,11.11));
+  Energies.insert(std::make_pair(5,8.16));
+  Energies.insert(std::make_pair(6,6.25));
+  Energies.insert(std::make_pair(7,4.94));
+  Energies.insert(std::make_pair(8,4.00));
+  Energies.insert(std::make_pair(9,3.31));
+  Energies.insert(std::make_pair(10,2.78));
+  Energies.insert(std::make_pair(11,2.37));
+  Energies.insert(std::make_pair(12,2.04));
+  Energies.insert(std::make_pair(13,1.78));
 }
 
 Comparison::~Comparison(){
@@ -154,19 +167,51 @@ void Comparison::WriteLeadSampling(){
 }
 
 void Comparison::WriteShowers(){
-  for(i=1;i<=13;++i){
+  for(int i=1;i<=13;++i){
     TCanvas ShowerCanvas("Shower Comparisons","Shower Comparisons",1800,1000);
+    TLegend ShowerLegend(0.6,0.75,0.9,0.9);
     ShowerCanvas.Divide(2,1);
-    ShowerCanvas.cd(1);
     auto c= Colors.begin();
-    for(auto s=SimRuns.being();s!=SimRuns.end();++s,++c){
-      Color_t CurrentColor=c->second;
-      (s->second->GetLeadShowerProfiles(CurrentColor))->second
-
+    double ScintMax=0;
+    double LeadMax=0;
+    TH1D* FirstLead;
+    TH1D* FirstScint;
+    std::string LeadTitle="Shower Profile in Lead at "+to_string_with_precision(Energies[i],2)+"GeV with 10000 Events";
+    std::string ScintTitle="Shower Profile in Scintillator at "+to_string_with_precision(Energies[i],2)+"GeV with 10000 Events";
+    for(auto s=SimRuns.begin();s!=SimRuns.end();++s,++c){
+      Color_t CurrentColor=(*c);
+      ShowerCanvas.cd(1);
+      std::map<std::string, TH1D*> CurrentLeadShowers=s->second->GetLeadShowerProfiles(CurrentColor);
+      TH1D* CurrentLeadShower=CurrentLeadShowers[std::to_string(i)];
+      double CurrentLeadMax=CurrentLeadShower->GetBinContent(CurrentLeadShower->GetMaximumBin());
+      if(CurrentLeadMax>LeadMax)LeadMax=CurrentLeadMax;
+      ShowerLegend.AddEntry(CurrentLeadShower,(s->second->GetName()).data());
+      if(s==SimRuns.begin()){
+	CurrentLeadShower->Draw();
+	CurrentLeadShower->SetTitle(LeadTitle.data());
+	FirstLead=CurrentLeadShower;
+      }
+      else{CurrentLeadShower->Draw("SAME");}
+      ShowerLegend.Draw();
+      //====================RightSide==================================
+      ShowerCanvas.cd(2);
+      std::map<std::string,TH1D*> CurrentScintShowers=s->second->GetScintShowerProfiles(CurrentColor);
+      TH1D* CurrentScintShower=CurrentScintShowers[std::to_string(i)];
+      double CurrentScintMax=CurrentScintShower->GetBinContent(CurrentScintShower->GetMaximumBin());
+      if(CurrentScintMax>ScintMax){ScintMax=CurrentScintMax;}
+      if(s==SimRuns.begin()){
+	CurrentScintShower->Draw();
+	CurrentScintShower->SetTitle(ScintTitle.data());
+  	FirstScint=CurrentScintShower;
+      }
+      else{CurrentScintShower->Draw("SAME");}
+      ShowerLegend.Draw();
     }
-
+    FirstScint->GetYaxis()->SetRangeUser(0.0,ScintMax*1.05);
+    FirstLead->GetYaxis()->SetRangeUser(0.0,LeadMax*1.05);
+    FirstScint->GetYaxis()->SetTitleOffset(1.3);
+    FirstLead->GetYaxis()->SetTitleOffset(1.3);
+    ShowerCanvas.Write();
   }
-
-
 
 }
