@@ -44,7 +44,7 @@ The 'b' term in equation \ref{eq:fr} arises due to electronic noise which causes
 
 The first step towards obtaining the fractional resolution of the model ECAL was to fire electrons into the ECAL at several fixed energies.  At each energy a histogram was produced showing the distribution of energy deposited in active regions of the ECAL.  This distribution is predicted to be gaussian, therefore a minimum chi squared fit of a gaussian function was performed at each energy to obtain the mean and standard deviation of the distribution. An example of one of these fits is shown in figure \ref{fig:Gauss}.  This was performed at 13 different energies between 1.78GeV and 44.44GeV, this range was chosen because it includes the majority of electron energies expected at \lhcb.
 
-\begin{figure}[h!]
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{GaussExample.pdf}
   \caption{The distribution of energy deposited in scintillator(active) layers at 25 GeV}
@@ -56,19 +56,19 @@ From these fits the standard deviation divided by the mean was plotted against t
   \label{eq:fitfr}
   \frac{\sigma}{E}=\frac{a}{\sqrt{E}}\bigoplus c
 \end{equation}
-was performed with the parameters 'a' and 'c' left floating as these are to be determined by the fit.  This process was applied to both \geant version 9.5.p02 and 9.6.p04 with the same energies and 10000 events at each energy.  The results of these fits for both \geant versions are shown in figures \ref{fig:straightres}, \ref{fig:coolres} and table \ref{tab:results}.
+was performed with the parameters 'a' and 'c' left floating as these are to be determined by the fit.  This process was applied to both \geant version 9.5.p02 and 9.6.p04 with the same energies and 10000 events at each energy.  The results of these fits for both \geant versions are shown in figure \ref{fig:straightres} and table \ref{tab:results}.
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{StraightCompareUse.pdf}
   \caption{A plot of fractional resolution against $\frac{1}{\sqrt{E}}$ comparing versions of \geant. The fit is the function given in equation \ref{eq:fitfr}.}
   \label{fig:straightres}
 \end{figure}
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{CurvedCompare.pdf}
-  \caption{A plot of fractional resolution against $E$ comparing versions of \geant. The fit is the function given in equation \ref{eq:fitfr}.}
-  \label{fig:coolres}
-\end{figure}
+%\begin{figure}[h]
+ % \centering
+  %\includegraphics[width=\textwidth]{CurvedCompare.pdf}
+  %\caption{A plot of fractional resolution against $E$ comparing versions of \geant. The fit is the function given in equation \ref{eq:fitfr}.}
+  %\label{fig:coolres}
+%\end{figure}
 
 \begin{table}[h]
   \centering
@@ -79,7 +79,7 @@ was performed with the parameters 'a' and 'c' left floating as these are to be d
       C term    & 0.0051$\pm$0.0003 & 0.0049$\pm$0.0003 & consistent \\ \hline
       $\frac{\chi^2}{ndf}$   &1.798  & 1.048 &  \\ \hline
   \end{tabular}
-  \caption{Fractional resolution results for comparison of \geant versions.  These results are obtained from the fits shown in figures \ref{fig:straightres} and \ref{fig:coolres}}
+  \caption{Fractional resolution results for comparison of \geant versions.  These results are obtained from the fits shown in figures \ref{fig:straightres}}
   \label{tab:results}
 \end{table}
 
@@ -136,7 +136,7 @@ The precise cause of these discrepancies needs to be understood because there co
 \end{itemize}
 
 After contacting the \geant collaboration, the cause of the observed discrepancy is believed to lie with the changes to the multiple scattering model.  In fact, the \geant collaboration recommended that the multiple scattering models used in the \lhcb private PL are changed from \textit{UrbanMsc95} to \textit{UrbanMsc93} below 100MeV and \textit{WentzelVI} above 100MeV.  This would bring the simulation of multiple scattering within the LHCb private PL inline with the \geant \textit{emstandard opt1} physics list.
-
+\clearpage
 \subsubsection{Comparison of Physics Lists}
 \label{sec:Comaprison of PL}
 As the \geant collaboration had recommended a change to the LHCb private PL it was decided a thorough investigation of other PL options would be carried out using the simple calorimeter test.  This would be done using \geant version 9.6.p04, so that investigations directly related to the next version of the \lhcb simulation package could be carried out.  The results of these investigations would help to inform the decision of which PL to use for the next release of \gauss.  
@@ -158,15 +158,16 @@ The following physics lists supplied by \geant were investigated:
 As well as the \geant supplied PLs there is also the \lhcb private physics list to consider.  This is simply \textit{emstandard option1} with the \textit{applycuts} option disabled.  However, it is based on the \textit{opt1} PL from \geant v9.4 which differs to both the v9.5 and v9.6 \textit{op1} PLs.  Therefore, rather than just updating the multiple scattering model used in the \lhcb private PL (as suggested by the \geant collaboration  and discussed in section \ref{sec:Discussionofresultsone}) it was decided that the new version of the \lhcb private PL would be the \textit{opt1} PL from v9.6 with the \textit{ApplyCuts} option disabled. Consequently, this study investigates both the old version of the \lhcb private PL (LHCbOld) and the new version (LHCbNew).
 
 \paragraph{Fractional Resolution}
-The first quantity used to test all the PLs described above was, again, the fractional resolution of the model ECAL.  Just as described in section \ref{sec:Fractional Resolution Investigation}, 10000 electrons were fired into the model ECAL at 13 different energies between 1.78GeV and 44.44GeV.  The same procedure as described in section \ref{sec:Fractional Resolution} was again used to extract $\frac{\sigma}{E}$ for each energy and a minimum $\chi^2$ fit to equation \ref{eq:fitfr} was performed to obtain the values of 'a' and 'c'.  The simulation was run with all of the PLs described in section \ref{sec:Comparison of PL}, allowing results to be compared.
-\begin{figure}
+The first quantity used to test all the PLs described above was, again, the fractional resolution of the model ECAL.  Just as described in section \ref{sec:Fractional Resolution Investigation}, 10000 electrons were fired into the model ECAL at 13 different energies between 1.78GeV and 44.44GeV.  The same procedure as described in section \ref{sec:Fractional Resolution} was again used to extract $\frac{\sigma}{E}$ for each energy and a minimum $\chi^2$ fit to equation \ref{eq:fitfr} was performed to obtain the values of 'a' and 'c'.  The simulation was run with all of the PLs described in section \ref{sec:Comparison of PL}, allowing them to all be considered as a potential PL for the next version of \gauss.
+\begin{figure}[h]
   \centering
-  \includegraphics[width=\textwidth]{LHCbPLsStraight.pdf}
+  \includegraphics[width=\textwidth]{ProgressFR.pdf}
   \caption{A plot of fractional resolution against $\frac{1}{\sqrt{E}}$ for \geant v9.5 with the old PL and v9.6 with the new and old physics list options}
   \label{fig:LHCbPLStraightFR}
 \end{figure}
-Figure \ref{fig:LHCbPLStraightFR} shows the fractional resolution results with \lhcb private PLs, the result from \geant v9.5 is included for comparison.  A similar comparison is also made between all of the standard PLs supplied by the \geant collaboration, which is shown in \ref{fig:BoxPLStraightFR}.  A summary of all fit results is shown in table \ref{tab:AllPL}
-\begin{figure}
+
+Figure \ref{fig:LHCbPLStraightFR} shows the fractional resolution results with \lhcb private PLs, \textit{opt0},\textit{opt3} and \textit{opt4}, the result from \geant v9.5 is included for comparison.  A similar comparison is also made between all of the standard PLs supplied by the \geant collaboration, which is shown in Figure \ref{fig:BoxPLStraightFR}.  A summary of all fit results is shown in Table \ref{tab:AllPL}
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{BoxStraightRes.pdf}
   \caption{A plot of fractional resolution against $\frac{1}{\sqrt{E}}$ for \geant v9.6 with all of the \textit{emstandard} PLs.}
@@ -191,16 +192,79 @@ Figure \ref{fig:LHCbPLStraightFR} shows the fractional resolution results with \
   \label{tab:results}
 \end{table}
 
+Figure \ref{fig:LHCbPLStraightFR} shows that updating the \lhcb private PL to follow \textit{emstandard opt1} has, in fact, increased the discrepancy with v9.5.  Although this initially seems troublesome, one should not necessarily expect the results from the new PL to match those of the old PL and \geant version because progression of results is expcected.  There is nothing to say the old PL would show the best agreement with data, in fact one should expect the newer version to be the most accurate.  It is, however, important that the progression of results is observed and calibrated for.
+
+A direct comparison with data is not possible in this scenario due to limited test beam data and the absence of electronic noise in this simplifed scenario.   It is known that the \lhcb private PL has to use a simplified and consequently bias multiple scattering model due to CPU time constraints.  Therefore, the PLs that do not use a simplifed multiple scattering model should provide the best agreement with data and can consequently be used to check if progress towards greater accuracy has been made.  On this basis, Figure \ref{fig:LHCbPLStraightFR} shows that progress towards a more accurate fractional resolution result has been made by both moving to \geant v9.6 and updating the \lhcb private PL. Nevertheless, progress this large for well understood electromagnetic processes is still surprising.
+
+Figure \ref{fig:BoxPLStraightFR} shows that there is a big difference in results between models that use a simplifed multiple scattering model and those that don't.  There is almost no difference between \textit{opt1} and \textit{opt2}, both of which \textbf{do} use a simplified multiple scattering model.  Likewise, \textit{opt3}, \textit{opt4}, and \textit{opt0} show results that are within $5\%$ of each other, all of which \textbf{do not} use a simpified multiple scattering model.  This is useful confirmation that, as expected, simplifying the multiple scattering model introduces bias to the result.
+
+\paragraph{Sampling Fractions and Shower Profiles} 
+Using the same procedure as descirbed in section \ref{sec:Sampling Fraction and Shower Profile Investigations} shower profiles were created for all PLs under investigation.  
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{ProgressShowrs.pdf}
+  \caption{Shower profiles in Lead and Scintillator layers of the ECAL using LHCb private PLs and \geant PLs without simplified multiple scattering models.}
+  \label{fig:LHCbPLShowers}
+\end{figure}
+
+Figure \ref{fig:LHCbPLShowers} shows shower profiles in lead and scintillator layers at 44.44GeV for the \lhcb private PLs, \textit{opt0}, \textit{opt3} and \textit{opt4} PLs.  This shows that changing to \geant v9.6 has moved the shower profiles towards, what is understood to be, the results with the most accurate PLs.  However, in the case of shower profiles the results from the new and old \lhcb private PLs are too close to draw any conclusions about which is the more accurate.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{BoxShowers.pdf}
+  \caption{Shower profiles in Lead and Scintillator layers of the ECAL using \geant supplied PLs}
+  \label{fig:BoxPLShowers}
+\end{figure}
+
+Figure \ref{fig:BoxPLShowers} shows a comparison of shower profiles, in both mediums, for all of the \textit{emstandard} PLs.  This shows a significant discrepancy between PLs with and without a simplified multiple scattering model.  This is again useful confirmation that a simplified multiple scattering model does unfortuantely introduce bias to the results.
 
 
+As in section \ref{sec:Sampling Fraction and Shower Profile Investigations} the shower profiles were integrated to obtain the sampling fraction and sampling ratio for each PL.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{ProgressSF.pdf}
+  \caption{Sampling fraction of the ECAL as a function of energy}
+  \label{fig:ProgressSF}
+\end{figure}
+%\begin{figure}[h]
+ % \centering
+ % \includegraphics[width=\textwidth]{ProgressRatio.pdf}
+ % \caption{Sampling ratio of the ECAL as a function of energy}
+  %\label{fig:ProgressRatio}
+%\end{figure}
+
+Figure \ref{fig:ProgressSF} also shows that moving to \geant v9.6 has made progress towards more accurate results for the \lhcb private PLs.  Unlike the fractional resolution, however, the LHCbOld PL and LHCbNew PL sampling fractions are within uncertainties of each other at the majority of energies.  Therefore, for the purposes of choosing a new EM PL they have to be considered to be equally as accurate.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{BoxSF.pdf}
+  \caption{Comparison of sampling fractions from \geant supplied PLs}
+  \label{fig:BoxSF}
+\end{figure}
+%\begin{figure}[h]
+ % \centering
+  %\includegraphics[width=\textwidth]{BoxRatio.pdf}
+  %\caption{Comparison of sampling ratio from \geant supplied PLs}
+  %\label{fig:BoxRatio}
+%\end{figure}
+Figure \ref{fig:BoxSF} shows that the \textit{opt1} and \textit{opt2} physics lists produce very similar results.  However, they are very different to the results produced by the more accurate PLs that do not use a simplified multiple scattering model.
+
+\subsubsection{Simple Calorimeter Test Conclusions}
+\label{ref:CaloConclusions}
+Firstly, a significant discrepancy in fractional resolution and sampling fraction of a model \lhcb ECAL has been observed between \geant v9.5 and v9.6.  Consequently, the \lhcb calorimeter group will have to re calibrate the ECAL for the new release of \gauss. This discrepancy is believed to be a result of the new \geant version depositing more energy in scintillator and less in lead layers, most likely as a reuslt of updates to the multiple scattering models used.  This discrepancy has resulted in the \geant collaboration suggesting the \lhcb EM PL should be updated to a new multiple scattering model.  The studies in section \ref{sec:Comaprison of PL} show that updating the \lhcb EM PL to follow the \textit{emstandard opt1} PL actually increases this discrepancy. The stochastic component of the fractional resolution parameterisation changes from $0.922 \pm 0.0003$ with the old \lhcb PL to $0.910\pm 0.002$ with the updated \lhcb PL. However, the fractional resolution study using the most accurate PL available for the energy ranges considered here (\textit{emstandard opt0}) yields a stochastic term of $0.794\pm0.0002$.  Therefore, updating the \lhcb PL would cause progression of results towards a more accurate measurement.
+
+A choice of PL has to be made for the next release of \gauss.  Throughout this study CPU time was monitored because it is a valuable and limited resource in particle physics.  It was noted that there was a siginificant increase in CPU time required when a PL without a simplified multiple scattering model was used. This increase varied from a factor of 2, to a factor of 6 compared to v9.5.  Other studies have shown that approximately $45\%$ of the time taken to simulate an event in \gauss is spent simulating the electromagnetic shower.  Therefore, even a factor of 2 increase in CPU time is not feasible.  The consequences of this are that only \textit{emstandard opt1}, \textit{emstandard opt2}, \textit{LHCBOld} and \textit{LHCbNew} are viable choices for the new PL.
+
+Previously, \lhcb has experienced issues with the agreement between data and MC for the impact parameter resolution.  The conclusion of an extensive investigation into this issue was to use the PL described here as \textit{LHCBOld}.  Therefore, it was decided that the new PL should stay as close as possible to \textit{LHCbOld} to avoid introducing disagreements between data and MC elsewhere in the detector simulation.
+
+Finally, it was decided that the updates suggested by \geant should be adopted firstly because it is important to stay current with \geant updates as user support for older versions is eventually withdrawn.  Furthermore, they show improvements in the accuracy of results and these updates have come as result of testing by the \geant collaboration themselves.  Therefore, the \textit{LHCbNew} physics list was chosen as the new EM PL for the new version of \gauss.
+
+%TODO cite geant4 testing.
+
+%TODO cite jimmys thesis . 
 
 
-
-This plot shows that updating the \lhcb private PL to follow \textit{emstandard opt1} has, in fact, increased the discrepancy with v9.5.  Although this initially seems troublesome, one should not necessarily expect the results from the new PL to match those of the old PL and \geant version because progression fo results is expcected.  There is nothing to say the old PL would show the best agreement with data, in fact one should expect the newer version to be the most accurate.  It is, however, important that the progression of results is observed and calibrated for.
-
-A direct comparison with data is not possible in this scenario due to limited test beam data and the absence of electronic noise in this simplifed scenario.   It is known that the \lhcb private PL has to use a simplified and consequently bias multiple scattering model due to CPU time constraints.  Therefore, the PLs that do not use a simplifed multiple scattering model should provide the best agreement with data and can consequently be used to check if progress towards greater accuracy has been made.
-
-Figure \ref{fig:BoxPLStraightFR} shows 
+%Figure \ref{fig:BoxPLStraightFR} shows 
 %Simple Calorimeter Test
 %----Calorimetry Background
 %----Comparison of Geant4 versions
@@ -214,5 +278,5 @@ Figure \ref{fig:BoxPLStraightFR} shows
 
 %MSC
 %--results
-
+\clearpage
 

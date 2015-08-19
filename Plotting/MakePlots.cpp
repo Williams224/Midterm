@@ -21,14 +21,24 @@ int main(){
   
   Comparison *BoxComparison= new Comparison("BoxComparison");
   Comparison *LHCbComparison= new Comparison("LHCbComparison");
+  Comparison *AllComparison = new Comparison("AllComparison");
   LHCbComparison->AddSimRun(LHCbOld);
   LHCbComparison->AddSimRun(LHCbNew);
-  //BoxComparison->AddSimRun(opt0);
-  //  BoxComparison->AddSimRun(opt1);
+  BoxComparison->AddSimRun(opt0);
+  BoxComparison->AddSimRun(opt1);
   BoxComparison->AddSimRun(opt2);
-  //BoxComparison->AddSimRun(opt3);
+  BoxComparison->AddSimRun(opt3);
   BoxComparison->AddSimRun(opt4);
   LHCbComparison->AddSimRun(FiveLHCbOld);
+  
+  AllComparison->AddSimRun(LHCbOld);
+  AllComparison->AddSimRun(LHCbNew);
+  AllComparison->AddSimRun(opt0);
+  // AllComparison->AddSimRun(opt1);
+  //  AllComparison->AddSimRun(opt2);
+  AllComparison->AddSimRun(opt3);
+  AllComparison->AddSimRun(opt4);
+  AllComparison->AddSimRun(FiveLHCbOld);
   TFile* BoxOut = new TFile("BoxOutput.root","RECREATE");
   BoxComparison->WriteStraightRes();
   BoxComparison->WriteCurvedRes();
@@ -45,4 +55,12 @@ int main(){
   LHCbComparison->WriteLeadSampling();
   LHCbComparison->WriteShowers();
   LHCbOut->Close();
+  TFile* AllOut= new TFile("AllOutput.root","RECREATE");
+  AllComparison->WriteStraightRes();
+  AllComparison->WriteCurvedRes();
+  AllComparison->WriteSamplingRatio();
+  AllComparison->WriteScintSampling();
+  AllComparison->WriteLeadSampling();
+  AllComparison->WriteShowers();
+  AllOut->Close();
 }
