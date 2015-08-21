@@ -33,20 +33,44 @@ Comparison::~Comparison(){
   std::cout<<"Comparison Destructor Called"<<std::endl;
 }
 
-Comparison::SetBaseLine(ComparableObject * _BaseLine){
+void Comparison::SetBaseLine(ComparableObject * _BaseLine){
   assert(_BaseLine!=NULL);
   BaseLine=_BaseLine;
+  TGraphErrors* BaseGr=BaseLine->GetTheta0(kRed);
+  Int_t N=BaseGr->GetN();
+  Double_t* BX=BaseGr->GetX();
+  Double_t* BY=BaseGr->GetY();
+  Double_t* BEX=BaseGr->GetEX();
+  Double_t* BEY=BaseGr->GetEY();
+  for(int i=0;i<N;++i){
+    DataPoint Tmp;
+    Tmp.X=BX[i];
+    Tmp.Y=BY[i];
+    Tmp.EX=BEX[i];
+    Tmp.EY=BEY[i];
+    BaseDataPoints.push_back(Tmp);
+  }
 }
 
-Comparison::AddSimRun(ComparableObject* _SimRun){
+void Comparison::AddSimRun(ComparableObject* _SimRun){
   assert(_SimRun!=NULL);
   SimRuns.insert(std::make_pair(_SimRun->GetName(),_SimRun));
 }
 
-Comparison::WriteTheta0(){
+void Comparison::WriteTheta0(){
   assert(SimRuns.size()>=1);
+  auto c=Colors.begin();
+  for(auto s =SimRuns.begin();s!=SimRuns.end();++s,++c){
+    TGraphErrors* Gr=s->second->GetTheta0((*c));
+    Int_t N=Gr->GetN();
+    assert(N==BaseDataPoints.size());
+    Double_t* X=Gr->GetX();
+    Double_t* Y=Gr->GetY();
+    Double_t* EX=Gr->GetEX();
+    Double_t* EY=Gr->GetEY();
+  }
   
-
+  
 
 
 }
