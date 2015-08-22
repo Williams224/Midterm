@@ -24,6 +24,8 @@ Comparison::Comparison(std::string _Name):ComparisonName(_Name){
   Energies.insert(std::make_pair(11,25.0));
   Energies.insert(std::make_pair(12,30.0));
   Energies.insert(std::make_pair(13,40.0));
+
+  Theta0Combination= new TMultiGraph("Theta0 Comparison","Theta0 Comparison");
 }
 
 
@@ -68,9 +70,25 @@ void Comparison::WriteTheta0(){
     Double_t* Y=Gr->GetY();
     Double_t* EX=Gr->GetEX();
     Double_t* EY=Gr->GetEY();
+    std::string NormedName=s->second->GetName();
+    std::cout<<"NormedName= "<<NormedName<<std::endl;
+    FillableGraph* NormedGr=new FillableGraph(NormedName.data());
+    NormedGraphs.push_back(NormedGr);
+    for(int i=0;i<N;++i){
+      double fX=X[i];
+      double fY=Y[i]/BaseDataPoints.at(i).Y;
+      double fEX=0;
+      double A=EY[i]/BaseDataPoints.at(i).Y;
+      double B=(Y[i]*BaseDataPoints.at(i).EY)/(BaseDataPoints.at(i).Y*BaseDataPoints.at(i).Y);
+      double fEY=TMath::Sqrt(std::pow(A,2)+std::pow(B,2));
+      std::cout<<"Y= "<<Y[i]<<" +/- "<<EY[i]<<std::endl;
+      std::cout<<"Base Y= "<<BaseDataPoints.at(i).Y<<" +/- "<<BaseDataPoints.at(i).EY<<std::endl;
+      std::cout<<"fY= "<<fY<<" +/- "<<fEY<<std::endl;
+      NormedGr->Fill(fX,fY,fEX,fEY);
+     
+    }
+    Theta0Combination->Add(NormedGr->ColoredData(*c),"AP");
+     std::cout<<"Got Here"<<std::endl;
   }
-  
-  
-
-
+  Theta0Combination->Write();
 }

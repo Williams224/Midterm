@@ -4,13 +4,16 @@
 #include"ComparableObject.hpp"
 #include<map>
 #include"FillableGraph.hpp"
+#include"TMultiGraph.h"
+#include"TMath.h"
+#include <cmath>
 
 struct DataPoint{
   double X;
   double Y;
   double EX;
   double EY;
-}
+};
   
 class Comparison{
 private:
@@ -21,7 +24,7 @@ private:
   std::vector<DataPoint> BaseDataPoints;
   std::vector<FillableGraph*> NormedGraphs;
   ComparableObject* BaseLine=NULL;
-  TGraphErrors* Theta0Combination=NULL;
+  TMultiGraph* Theta0Combination=NULL;
 public:
   Comparison(std::string _Name);
   ~Comparison();
