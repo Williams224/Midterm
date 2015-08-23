@@ -7,6 +7,9 @@
 #include"TMultiGraph.h"
 #include"TMath.h"
 #include <cmath>
+#include"TAxis.h"
+#include"TLegend.h"
+#include"TCanvas.h"
 
 struct DataPoint{
   double X;
@@ -25,6 +28,7 @@ private:
   std::vector<FillableGraph*> NormedGraphs;
   ComparableObject* BaseLine=NULL;
   TMultiGraph* Theta0Combination=NULL;
+  TLegend* Leg;
 public:
   Comparison(std::string _Name);
   ~Comparison();

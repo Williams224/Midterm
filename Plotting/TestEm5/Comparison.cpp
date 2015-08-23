@@ -26,6 +26,7 @@ Comparison::Comparison(std::string _Name):ComparisonName(_Name){
   Energies.insert(std::make_pair(13,40.0));
 
   Theta0Combination= new TMultiGraph("Theta0 Comparison","Theta0 Comparison");
+  Leg=new TLegend(0.1,0.7,0.48,0.9);
 }
 
 
@@ -73,6 +74,7 @@ void Comparison::WriteTheta0(){
     std::string NormedName=s->second->GetName();
     std::cout<<"NormedName= "<<NormedName<<std::endl;
     FillableGraph* NormedGr=new FillableGraph(NormedName.data());
+    //    NormedGr->SetMarkerStyle(5);
     NormedGraphs.push_back(NormedGr);
     for(int i=0;i<N;++i){
       double fX=X[i];
@@ -87,8 +89,14 @@ void Comparison::WriteTheta0(){
       NormedGr->Fill(fX,fY,fEX,fEY);
      
     }
+    TGraphErrors* tmp=NormedGr->ColoredData(*c);
+    tmp->SetMarkerStyle(5);
     Theta0Combination->Add(NormedGr->ColoredData(*c),"AP");
+    Leg->AddEntry(NormedGr->ColoredData(*c),(s->second->GetName()).data(),"lep");
      std::cout<<"Got Here"<<std::endl;
   }
-  Theta0Combination->Write();
+  TCanvas C(ComparisonName.data(),ComparisonName.data(),1800,1000);
+  Theta0Combination->Draw("AP");
+  Leg->Draw();
+  C.Write();
 }
