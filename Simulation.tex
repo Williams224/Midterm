@@ -332,7 +332,21 @@ The energies chosen for this investigation were 1,2,3,4,5,7,9,12,15,20,25,30 and
 
 \subsubsection{Results}
 \label{sec:MscResults}
-The results for $\theta_0$ from running the simulation with v9.6 \textit{LHCbOld} and \textit{LHCbNew} were divided by the results from running the simulation with v9.5 and \textit{LHCbOld} to make a direct comparison with the previous release of \geant.  These are shown in Figure \ref{fig:theta0}.
+The results for $\theta_0$ from running the simulation with v9.6 \textit{LHCbOld} and \textit{LHCbNew} were divided by the results from running the simulation with v9.5 and \textit{LHCbOld} to make a direct comparison with the previous release of \geant.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{theta0.pdf}
+  \caption{$\theta_0$ as a function of energy normalised to \geant v9.5 \textit{LHCbOld}}
+  \label{fig:theta0}
+\end{figure}
 
+Firstly, and most imporatantly, Figure \ref{fig:theta} shows that the width of the angular distribution from the new version of \geant with the new physics list has increased by $4-6\%$ compared to what was used in the previous release of \geant.  The statistical significance of this change varies from $5.77\sigma$ at 1GeV to $7.95\sigma$ at 40GeV, meaning there is no doubt that this is due to a systematic change in the simulation process.
+
+Secondly, Figure \ref{fig:theta} also shows that this change in $\theta_0$ must be largely attributed to the changes made to the multiple scattering model rather than moving to a new version of \geant.  Although the results with the new version of \geant and the old PL are systematiclly $0.5-1.3\%$ and upto $1.7\sigma$ larger, this is still considerably smaller than when the new PL is used with v9.6.
+
+\subsubsection{Conclusions}
+\label{sec:Conclusions}
+Clearly the angular distribution with the new \geant version and PL has changed when a \lhcb VELO like situation is considered.  Unfortuantely, due to limitations of the \geant example it is only possible to consider scattering from one sheet of silicon which is not completely representative of the entire VELO system (see section detector).  Therefore a full detector simulation using \gauss is required to study this discrepancy and, importantly, the effect on the impact parameter resolution.  This simulation will be carried out by the \lhcb VELO group when the new release of \gauss is made.
+%TODO ref detector section.
 
 \clearpage

@@ -83,9 +83,11 @@ void Comparison::WriteTheta0(){
       double A=EY[i]/BaseDataPoints.at(i).Y;
       double B=(Y[i]*BaseDataPoints.at(i).EY)/(BaseDataPoints.at(i).Y*BaseDataPoints.at(i).Y);
       double fEY=TMath::Sqrt(std::pow(A,2)+std::pow(B,2));
-      std::cout<<"Y= "<<Y[i]<<" +/- "<<EY[i]<<std::endl;
-      std::cout<<"Base Y= "<<BaseDataPoints.at(i).Y<<" +/- "<<BaseDataPoints.at(i).EY<<std::endl;
-      std::cout<<"fY= "<<fY<<" +/- "<<fEY<<std::endl;
+      // std::cout<<"Y= "<<Y[i]<<" +/- "<<EY[i]<<std::endl;
+      // std::cout<<"Base Y= "<<BaseDataPoints.at(i).Y<<" +/- "<<BaseDataPoints.at(i).EY<<std::endl;
+      // std::cout<<"fY= "<<fY<<" +/- "<<fEY<<std::endl;
+      std::cout<<"Energy= "<<fX<<" Sigma= "<<((fY-1)/fEY)<<std::endl;
+      std::cout<<"Energy= "<<fX<<" Percent= "<<(fY-1)<<std::endl;
       NormedGr->Fill(fX,fY,fEX,fEY);
      
     }
