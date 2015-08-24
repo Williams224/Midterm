@@ -6,6 +6,7 @@
 
 
 The intention of this analysis is to use the full $3fb^{-1}$ dataset collected by \lhcb in run I of the LHC.  However, the $1fb^{-1}$ of data collected at a 7TeV centre of mass energy (CoM) and the $2fb^{-1}$ of data collected at an 8TeV centre of mass energy will be treated seperatley at least for the selection stage of this analysis.  This is because the differences in kinematic variables between these two CoM energies would make a common selection for both sub-optimal. So far only the $2fb^{-1}$ of 8TeV data has been considered, therefore all results in this report are based on that dataset.
+
 \subsection{Decay Reconstruction}
 \label{sec:Decay Reconstruction}
 The \Kstar will be reconstructed in the channel $\Kstar \to \Kp\pim$ which has a branching fraction of $99.901\pm0.009\%$ \cite{PDG2014}.  The \etaz will be reconstructed in the channel $\etaz \to \pip\pim\piz$ where the \piz decays to 2 photons, which has a combined branching fraction of $21.83\pm0.28\%$\cite{PDG2014}.  This is not the dominant decay mode of the \etaz particle but the 2 decay modes with higher branching fractions contain only neutral particles in the final state.  This means there is no tracking information available and the \lhcb calorimeter (unlike the \atlas calorimeter) does not provide any directional information for the photons it detects.  Consequently, reconstruction efficiencies for all neutral final states are significantly lower and backgrounds are higher, which makes the \pip\pim\piz channel the optimal choice.  
@@ -18,9 +19,67 @@ The combination of particles to form a \Bd candidate described is all done by th
 \subsection{Event Selection}
 \label{sec:Selection}
 
+The first stage of any analysis is selecting a subset of the \lhcb dataset that contains a high purity of events of interest to the analysis.  Essentially, one has to mimise the number of background events that pass a set of selection criteria whilst keeping as many signal events as possible. These selection criteria are composed of several stages.
 
-The first stage of any analysis is selecting a subset of the \lhcb dataset that contains the 
+\subsubsection{Stripping Selection}
+\label{sec:Stripping}
+As the data collected by \lhcb in run I is of the order of 10s of Petabytes it is impossible for every user to start with the full dataset.  Therefore, loose selection criteria need to be applied to the full dataset to produce a subset of data that can be worked with.  A set of these loose selection criteria are refered to as a stripping line, some of which are quite general (e.g dimuon final state) whereas others are for a specific analysis.  The amount of CPU time taken to run over the full run I dataset is very large, therefore stripping takes place when the data is taken and then incremental re-strippings take place no more than a few times a year.  The stripping process is always run centrally.
+%TODO check how to make a stripping line
+The cuts that go into a stripping line are determined such that they give maximal signal efficiency whilst keeping within the amount of per event CPU time allocated to that stripping line.  The signal efficiencies are assessed by applying the same selection to simulated (MC) signal events.  In the case of this analysis, the stripping line was already completed before this analysis started otherwise the deadline for submitting stripping lines would not have been met.
 
+The cuts applied as part of the stripping selection used for this analysis are shown in Table \ref{tab:stripping}.
+
+\begin{table}[h]
+  \label{tab:stripping}
+  \scriptsize
+  \centering
+  \begin{tabular}{ccc}
+    \hline
+    Particle      & Cut            & Value      \\ \hline
+    \Bz          & \chisqvtx$<$   & 15         \\
+    & DOCA \chisq$<$ & 20           \\
+    & \pt $>$        & 1500\mev     \\
+    & DIRA $>$       & 0.9995       \\
+    & IP \chisq $<$  & 20           \\
+    & m(\Bz)$\pm$    & 750\mev      \\ \hline
+    \Peta & \chisqvtx$<$   & 15           \\
+    & DOCA \chisq$<$ & 20           \\
+    & \pt $>$        & 2000\mev     \\
+    & m(\etaz)$\pm$ & 100\mev \\ \hline
+    Track        & \pt $>$        & 300\mev      \\
+    & Ghost Prob $<$ & 0.5          \\\hline
+    \Kstar     & \chisqvtx$<$     & 9        \\
+    & IP \chisq$<$     & 5        \\
+    & \pt $>$          & 1200\mev \\
+    & m(\Kstar)$\pm$   & 100MeV   \\ 
+    & Daughter \pt $>$ & 500\mev  \\\hline
+  \end{tabular}
+  \caption{The stripping selection applied}
+\end{table}
+
+The meaning of these variables is as follows:
+\begin{itemize}
+\item \textbf{$\chi_{vtx}^2$} is the $\chi^2$ per degree of freedom of the initial vertex fit used to determine the properties of the daughter particles (see section \label{sec:Decay Reconstruction}).
+\item \textbf{DOCA $\chi^2$} requires the $\chi^2$ of the distance of closest approach between all possible pairs of particles that form the \Bd to be less than the given value
+\item \textbf{$P_t$} Momentum transverse to the beam pipe.
+\item \textbf{DIRA} The cosine of the angle between the \Bd momentum direction and the vector between the most likely primary vertex and the \Bd decay vertex.
+\item \textbf{IP $\chi^2$} The $\chi^2$ of the impact parameter (see Figure \ref{fig:decaydiag}).
+\item \textbf{m(X)$\pm$} Requires the mass of the candidate to lie no more than this value from the PDG mass.
+\item \textbf{Ghost Prob} The probability that a track is fake, as determined by the \lhcb tracking system.
+\end{itemize}
+In addition to the cuts shown in Table \ref{tab:stripping}, candidates are required to pass either of the  ``HLT1TrackAllL0Decision'' trigger lines which are explained in section \ref{sec:trigger}.
+
+
+The efficiency of this selction can be assessed by applying it to signal MC; the efficiency is then simply $\frac{No. True Signal Events Passing Stripping}{ No. Generated}$.  The stripping efficiency is found to be $0.00317 \pm 0.00002$, which is a quite typical stripping efficiency at \lhcb.
+%However, when the \lhcb analysis software is ran on MC not every resulting event is a true signal event.  This is because false candidates can easily be created for a variety of reasons, but the most common of which is when particles from other pp interactions in the same bunch crossing get wrongly attributed as a candidate particle.  To ensure only true MC signal events are used in this analysis truth cuts are applied before it is used.
+
+The stripping efficiency is then found to be $0.00317 \pm 0.00002$, which is a quite typical stripping efficiency at \lhcb.
+
+\subsubsection{Trigger Cuts}
+\label{sec:trigger}
+The \lhcb trigger has many trigger selections (trigger lines) that are applied as part of the triggering process, each of which aims to except a set of similar analyses.  If an event passes any of these trigger lines it is stored, but the specific trigger lines that it passed are flagged.  Therefore, the trigger selections of trigger lines more specific to this final state can easily be applied.
+
+For this analysis, 
 
 %Decay Reconstruction
 %Selection
@@ -29,3 +88,4 @@ The first stage of any analysis is selecting a subset of the \lhcb dataset that 
 %---BDT
 %---
 
+\clearpage
