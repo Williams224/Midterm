@@ -195,8 +195,44 @@ The overall ouptut of the trained BDT for the control samples is shown in Figure
 
 %optimisation of BDT Cut
 \paragraph{Optimisation of BDT Cut}
+A cut on the BDT response now needs to be applied.  As the \Bd meson has been observed to decay to \Kstar \etaz previously, this analysis not performed blinded.  The consequences of this is that signal significance can be used to optimise the BDT cut.  The signal significance, $\sigma$, is defined as,
+\begin{equation}
+  \sigma=\frac{S}{\sqrt{S+B}}
+\end{equation}
+where S/B is the number of signal/background events present in a defined signal window.  The values of S and B have to be extracted with a mass fit to data at each BDT cut.
 
+In order to paramaterise the signal shape, a mass fit to truth matched MC was first performed using Crystal Ball probability density functions(PDF).  The Crystal Ball experiment was the first to use this PDF, which is centrally a gaussian with a power law tail after a given cut off \cite{CrystallBall}.  It is a given by the function,
+\begin{equation}
+f(x;\alpha,n,\bar x,\sigma) = N \cdot \begin{cases} \exp(- \frac{(x - \bar x)^2}{2 \sigma^2}), & \mbox{for }\frac{x - \bar x}{\sigma} > -\alpha \\
+  A \cdot (B - \frac{x - \bar x}{\sigma})^{-n}, & \mbox{for }\frac{x - \bar x}{\sigma} \leqslant -\alpha \end{cases}
+\end{equation}
 
+where
+\begin{equation}
+  A = \left(\frac{n}{\left| \alpha \right|}\right)^n \cdot \exp\left(- \frac {\left| \alpha \right|^2}{2}\right)
+\end{equation}
+\begin{equation}
+  B = \frac{n}{\left| \alpha \right|}  - \left| \alpha \right|
+\end{equation}
+\begin{equation}
+  N = \frac{1}{\sigma (C + D)}
+\end{equation}
+  \begin{equation}
+  C = \frac{n}{\left| \alpha \right|} \cdot \frac{1}{n-1} \cdot \exp\left(- \frac {\left| \alpha \right|^2}{2}\right)
+  \end{equation}
+  \begin{equation}
+  D = \sqrt{\frac{\pi}{2}} \left(1 + \operatorname{erf}\left(\frac{\left| \alpha \right|}{\sqrt 2}\right)\right)
+  \end{equation}
+
+  The parameter $\alpha$ describes the cut off where the function changes from a gaussian to a power law. A positive value of $\alpha$ gives a low side tail and a negative value gives a high side tail.
+
+  The signal shape in MC was found to have non-gaussian tails on both sides of the distribution.  Therefore, a double crystal ball function was used with opposite side tails by restricting the two $\alpha$ parameters to have opposite signs.  An extended unbinned maximum likelihood fit was used, for which the likelihood function was given by,
+  \begin{equation}
+    L=e^{-N_{C1}-N_{C2}}\prod_i^{D}N_{C1}C1(x_i,\alpha_1,n_1,\bar{x}_1,\sigma_1)+N_{C2}C2(x_i,\alpha_2,n_2,\bar{x}_2,\sigma_2)
+  \end{equation}
+
+where N_{c} is the number of signal events in each of the crystal ball functions.
+%TODO check likelihood
 
 %Decay Reconstruction
 %Selection
