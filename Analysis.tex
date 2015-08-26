@@ -224,14 +224,43 @@ where
   D = \sqrt{\frac{\pi}{2}} \left(1 + \operatorname{erf}\left(\frac{\left| \alpha \right|}{\sqrt 2}\right)\right)
   \end{equation}
 
-  The parameter $\alpha$ describes the cut off where the function changes from a gaussian to a power law. A positive value of $\alpha$ gives a low side tail and a negative value gives a high side tail.
-
-  The signal shape in MC was found to have non-gaussian tails on both sides of the distribution.  Therefore, a double crystal ball function was used with opposite side tails by restricting the two $\alpha$ parameters to have opposite signs.  An extended unbinned maximum likelihood fit was used, for which the likelihood function was given by,
+  The parameter $\alpha$ describes the cut off where the function changes from a gaussian to a power law. A positive value of $\alpha$ gives a low side tail and a negative value gives a high side tail.  $\bar{x}$ is the mean of the gaussian function, $\sigma$ is the width of the gaussian and n can be interpreted as the power for the tail.  In this fit, two crystal ball functions with opposite side tails and a common mean were used.  More specifically, an extended unbinned maximum likelihood fit was used, for which the likelihood function was given by,
   \begin{equation}
-    L=e^{-N_{C1}-N_{C2}}\prod_i^{D}N_{C1}C1(x_i,\alpha_1,n_1,\bar{x}_1,\sigma_1)+N_{C2}C2(x_i,\alpha_2,n_2,\bar{x}_2,\sigma_2)
+    L=e^{-N_{C1}-N_{C2}}\prod_i^{D}N_{C1}C1(x_i,\alpha_1,n_1,\bar{x},\sigma_1)+N_{C2}C2(x_i,\alpha_2,n_2,\bar{x},\sigma_2)
   \end{equation}
 
-where N_{c} is the number of signal events in each of the crystal ball functions.
+  where $N_{c}$ is the number of signal events in each of the crystal ball functions, C1 and C2 are the two crystal ball functions with opposite side tails.  $x_{i}$ is the mass of the i'th \Bd candidate. The parameters $N_{C1}, N_{C2},\alpha_1, n_1,\bar{x}, \sigma_1, \alpha_2,n_2,\sigma_2$ are free parameters to be determined by the fit.  Practically, this was performed using the RooFit package and the MINOS method was used to determine uncertainties\cite{Verkerke:2003ir}.
+
+  Figure \ref{fig:MCfit} shows the results of the fit performed to truth matched MC with the values of the free parameters determined by the fit.  The fit fraction in this Figure is $N_{C2}/N_{C1}$.  This shows a good quality fit to monte carlo and, crucially, it recovers the known signal yield within uncertainties.
+
+%TODO maybe provide PULLS
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{MCMassFit.png}
+    \caption{A plot of the truth matched monte carlo with no BDT cut and the fitted double crystal ball function.  The red and blue dashed lines are the inidividual crystal ball functions, the solid blue line is the overall fit}
+    \label{fig:MCfit}
+  \end{figure}
+
+  Now that the expected signal shape is parameterised, a mass fit to data can be carried out.  The combinatorial background was modelled with an exponential PDF, because this has described it well in analyses with similar final states\cite{LHCb-PAPER-2015-019}.  This exponential function, with its one free parameter k, was then added to the double crystal ball signal PDF.  However, for the fit to data all of the free parameters except the common mean and signal yields were fixed to those obtained in the mass fit to MC.  As these values change with BDT cut the mass fit to MC was re-performed after applying every BDT cut investigated.
+
+  The signal window was then defined to be within $\pm2\sigma$ of the \Bd mass, and the value of $\sigma$ was taken to be the value obtained for the widest crystal ball function in the mass fit to MC. An extended unbinned maximum likelihood fit was then performed at each BDT cut and the number of signal and background events within the signal window were extracted at each BDT cut.  This allowed the signal significance as a function of BDT cut to be determined, a plot of this is shown in Figure \ref{fig:bdtsigopt}.  The uncertainty on significance was calculate by propagating through the uncertainties on signal and background yields from the fit.  Figure \ref{fig:bdtsigopt} shows that the optimum BDT cut is at a value of 0.07.  By applying the BDT to MC it is found that the signal efficiency of this cut is $0.934\pm0.008$, which is pleasingly high.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{sigbdtopt.png}
+  \caption{Signal significance as a function of bdt cut}
+  \label{fig:bdtsigopt}
+\end{figure}
+
+Figure \ref{fig:massfit} shows the mass fit to data at this BDT cut.  Firstly the signal peak can clearly be seen with a significance of $15.9\sigma$ and a healthy signal yield of $452\pm29$ events.  However, the position of the signal peak (mean of crystal ball functions) is pulled to a higher value that is actually the limit set in the fitting procedure.  Also, there appears to be features in the background other than pure (exponential) combinatorial background which are causing data points to be systematically higher/lower than the fit in several places.  Therefore, the absolute values extracted from this fit can not be trusted, but this fit was deemed to provide an accurate enough estimate of the signal significane to optimise the BDT.  Consequently, a BDT cut of 0.07 was applied.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{MassFit.png}
+  \caption{The mass fit to data at the optimum BDT cut of 0.07.  The pink dashed line is the exponential (combinatorial) background and the green dashed line is the signal peak.  K is the constant in the exponential power, CBMean is the mean of the two crystal balls used to model signal and N/SignalYield is the number of background/signal events within the $2\sigma$ signal window.}
+  \label{fig:massfit}
+\end{figure}
+    
 %TODO check likelihood
 
 %Decay Reconstruction
