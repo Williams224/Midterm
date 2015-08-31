@@ -10,6 +10,16 @@ Comparison::Comparison(std::string _Name):ComparisonName(_Name){
   Colors.push_back(kOrange+4);
   Colors.push_back(kSpring+4);
   Colors.push_back(kYellow+3);
+
+
+
+  Markers.push_back(4);
+  Markers.push_back(28);
+  Markers.push_back(32);
+  Markers.push_back(30);
+  Markers.push_back(26);
+  Markers.push_back(27);
+  Markers.push_back(31);
   FitEquation= new TLatex();
   FitEquation->SetTextSize(0.03);
 
@@ -114,12 +124,13 @@ void Comparison::WriteSamplingRatio(){
   SamplingRatioMG=new TMultiGraph();
   SamplingRatioLeg=new TLegend(0.1,0.75,0.48,0.9);
   auto c=Colors.begin();
+  auto m=Markers.begin();
   assert(Colors.size()>=SimRuns.size());
   SamplingTitle="Comparison of ";
-  for(auto s=SimRuns.begin();s!=SimRuns.end();++s,++c){
+  for(auto s=SimRuns.begin();s!=SimRuns.end();++s,++c,++m){
     Color_t CurrentColor=(*c);
-    SamplingRatioMG->Add(s->second->GetSamplingRatio(CurrentColor));
-    SamplingRatioLeg->AddEntry(s->second->GetSamplingRatio(CurrentColor),(s->second->GetName()).data(),"LPE");
+    SamplingRatioMG->Add(s->second->GetSamplingRatio(CurrentColor,(*m)));
+    SamplingRatioLeg->AddEntry(s->second->GetSamplingRatio(CurrentColor,(*m)),(s->second->GetName()).data(),"LPE");
     SamplingTitle=SamplingTitle+(s->second->GetName())+", ";
   }
   SamplingRatioMG->Draw("APL");
@@ -136,12 +147,13 @@ void Comparison::WriteScintSampling(){
   ScintSamplingMG= new TMultiGraph();
   ScintSamplingLeg= new TLegend(0.1,0.75,0.48,0.9);
   auto c=Colors.begin();
+  auto m=Markers.begin();
   assert(Colors.size()>=SimRuns.size());
   ScintSamplingTitle="Comparison of ";
-  for(auto s=SimRuns.begin();s!=SimRuns.end();++s,++c){
+  for(auto s=SimRuns.begin();s!=SimRuns.end();++s,++c,++m){
     Color_t CurrentColor=(*c);
-    ScintSamplingMG->Add(s->second->GetScintSampling(CurrentColor));
-    ScintSamplingLeg->AddEntry(s->second->GetScintSampling(CurrentColor),(s->second->GetName()).data(),"LPE");
+    ScintSamplingMG->Add(s->second->GetScintSampling(CurrentColor,(*m)));
+    ScintSamplingLeg->AddEntry(s->second->GetScintSampling(CurrentColor,(*m)),(s->second->GetName()).data(),"LPE");
     ScintSamplingTitle=ScintSamplingTitle+(s->second->GetName())+", ";
   }
   ScintSamplingTitle=ScintSamplingTitle+" sampling fraction with 10000 events";
@@ -159,12 +171,13 @@ void Comparison::WriteLeadSampling(){
   LeadSamplingMG= new TMultiGraph();
   LeadSamplingLeg= new TLegend(0.1,0.75,0.48,0.9);
   auto c=Colors.begin();
+  auto m=Markers.begin();
   assert(Colors.size()>=SimRuns.size());
   LeadSamplingTitle="Comparison of ";
-  for(auto s=SimRuns.begin();s!=SimRuns.end();++s,++c){
+  for(auto s=SimRuns.begin();s!=SimRuns.end();++s,++c,++m){
     Color_t CurrentColor=(*c);
-    LeadSamplingMG->Add(s->second->GetLeadSamping(CurrentColor));
-    LeadSamplingLeg->AddEntry(s->second->GetLeadSamping(CurrentColor),(s->second->GetName()).data(),"LPE");
+    LeadSamplingMG->Add(s->second->GetLeadSamping(CurrentColor,(*m)));
+    LeadSamplingLeg->AddEntry(s->second->GetLeadSamping(CurrentColor,(*m)),(s->second->GetName()).data(),"LPE");
     LeadSamplingTitle=LeadSamplingTitle+(s->second->GetName())+", ";
   }
   LeadSamplingTitle=LeadSamplingTitle+" with 10000 events";

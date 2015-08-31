@@ -31,24 +31,30 @@ TGraphErrors* ComparableObject::GetCurvedRes(Color_t _Color){
   
 }
 
-TGraphErrors* ComparableObject::GetSamplingRatio(Color_t _Color){
+TGraphErrors* ComparableObject::GetSamplingRatio(Color_t _Color, int _MarkerStyle){
   assert(SamplingRatio!=NULL);
   SamplingRatio->SetLineColor(_Color);
   SamplingRatio->SetMarkerColor(_Color);
+  SamplingRatio->SetMarkerStyle(_MarkerStyle);
+  SamplingRatio->SetMarkerSize(2);
   return SamplingRatio;
 }
 
-TGraphErrors* ComparableObject::GetScintSampling(Color_t _Color){
+TGraphErrors* ComparableObject::GetScintSampling(Color_t _Color, int _MarkerStyle){
   assert(ScintSampling!=NULL);
   ScintSampling->SetLineColor(_Color);
   ScintSampling->SetMarkerColor(_Color);
+  ScintSampling->SetMarkerStyle(_MarkerStyle);
+  ScintSampling->SetMarkerSize(2);
   return ScintSampling;
 }
 
-TGraphErrors* ComparableObject::GetLeadSamping(Color_t _Color){
+TGraphErrors* ComparableObject::GetLeadSamping(Color_t _Color, int _MarkerStyle){
   assert(LeadSampling!=NULL);
   LeadSampling->SetLineColor(_Color);
   LeadSampling->SetMarkerColor(_Color);
+  LeadSampling->SetMarkerStyle(_MarkerStyle);
+  LeadSampling->SetMarkerSize(2);
   return LeadSampling;
 }
 

@@ -24,6 +24,7 @@ private:
   std::string ComparisonName;
   std::map<std::string,ComparableObject*> SimRuns;
   std::vector<Color_t> Colors;
+  std::vector<int> Markers;
   //==============================STRAIGHT==============================
   TCanvas* StraightCanvas=NULL;
   TMultiGraph* StraightMG=NULL;

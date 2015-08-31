@@ -27,9 +27,9 @@ protected:
   std::string GetName(){return Name;}
   virtual TGraphErrors* GetStraightRes(Color_t _Color);
   virtual TGraphErrors* GetCurvedRes(Color_t _Color);
-  virtual TGraphErrors* GetSamplingRatio(Color_t _Color);
-  virtual TGraphErrors* GetScintSampling(Color_t _Color);
-  virtual TGraphErrors* GetLeadSamping(Color_t _Color);
+  virtual TGraphErrors* GetSamplingRatio(Color_t _Color, int _MarkerStyle);
+  virtual TGraphErrors* GetScintSampling(Color_t _Color, int _MarkerStyle);
+  virtual TGraphErrors* GetLeadSamping(Color_t _Color, int _MarkerStyle);
   virtual std::map<std::string,TH1D*> GetLeadShowerProfiles(Color_t _Color);
   virtual std::map<std::string,TH1D*> GetScintShowerProfiles(Color_t _Color);
  

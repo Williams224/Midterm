@@ -1,11 +1,27 @@
 % $Id: introduction.tex 65669 2015-01-09 14:55:20Z tgershon $
-
 \section{Investigation of $\Bd \rightarrow \Kstar(892) \etaz$}
 \label{sec:Analysis}
 %motivation and stuff here TODO
+The intention of this analysis is to use the decay \Bd \to \Kstar \etaz as a control channel in the search for \Lb \to \proton \Km \etaz.  As of yet a \Lb baryon has never been observed to decay to a final state involving an \etapr or \etaz particle.  However, evidence for the decay \Lb \to \Lz\etaz at the level of $3\sigma$ has been observed by \lhcb \cite{LHCb-PAPER-2015-019}. Unfortunately, the search for \Lb \to \Lz \etaz suffered from low trigger efficiencies due to the long lived nature of the \Lz baryon. However if the \Lb instead deacys to a short lived \Lz resonance and an \etaz particle, trigger efficiencies are expected to be higher.  If this intermediate resonance is the $\Lz^{*}$(1520) or heavier, it can then decay to \proton \Km giving the final state that is the subject of this analysis.  The dominant feynman diagram for this decay is shown in Figure \ref{fig:feynman}, where the b\to s transition is mediated by an electroweak loop.
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{lambdaresfeynman.pdf}
+    \caption{ \Lb decaying to $\Lz^{*}$ and $\etaz^{(')}$ }
+    \label{fig:Initial}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{LambdaDecFeyn.pdf}
+    \caption{$\Lz^{*}$ decaying to \proton \Km.}
+    \label{fig:next}
+  \end{subfigure}
+  \label{fig:feynman}
+  \caption{Feynman diagrams showing how the rare decay often proceeds.}
+  \end{figure}
 
+In order to measure (or set a limit on) the branching fraction of \Lb \to \proton \Km the number of events observed has to be measured relative to the yield of a decay with a know branching fraction.  This is because it is incredibly difficult to measure the efficiency of the detector well enough to make an absolute measurement.  \Bd \to \Kstar \etaz is a good control channel for this search because it has only a pion/proton difference in the final state meaning minimal efficiency differences between the decays will need to accounted for when the relative branching fraction is calculated.  The world average of the branching fraction is currently $1.59\pm0.10 \times10^{-5}$, which means the uncertainty on this branching fraction should not be dominant in the measurement of the branching fraction for the rare mode.  This branching fraction measurement has been made, most recently, at  \babar and \belle\cite{Wang:2007rzb,Aubert:2006fj}.
 
-The intention of this analysis is to use the full $3fb^{-1}$ dataset collected by \lhcb in run I of the LHC.  However, the $1fb^{-1}$ of data collected at a 7TeV centre of mass energy (CoM) and the $2fb^{-1}$ of data collected at an 8TeV centre of mass energy will be treated seperatley at least for the selection stage of this analysis.  This is because the differences in kinematic variables between these two CoM energies would make a common selection for both sub-optimal. So far only the $2fb^{-1}$ of 8TeV data has been considered, therefore all results in this report are based on that dataset.
+The intention of this analysis is to use the full $3fb^{-1}$ dataset collected by \lhcb in run I of the LHC.  However, the $1fb^{-1}$ of data collected at a 7TeV centre of mass energy (CoM) and the $2fb^{-1}$ of data collected at an 8TeV centre of mass energy will be treated seperateley at least for the selection stage of this analysis.  This is because the differences in kinematic variables between these two CoM energies would make a common selection for both sub-optimal. So far only the $2fb^{-1}$ of 8TeV data has been considered, therefore all results in this report are based on that dataset.
 
 \subsection{Decay Reconstruction}
 \label{sec:Decay Reconstruction}
@@ -13,7 +29,7 @@ The \Kstar will be reconstructed in the channel $\Kstar \to \Kp\pim$ which has a
 
 Each of the final state particles in the decay chain are assigned a mass hypothesis based on information from all of the \lhcb sub detectors before being combined to form their respective mother particles.  The properties of the mother particle (e.g Energy, momentum, flight distance) are then determined with a fit to the daughter particles;   the $\chi^2$ of this fit can then aid the choice of candidate decays.
 
-The combination of particles to form a \Bd candidate described is all done by the \lhcb reconstruction packages and the initial, loose, selection of \Bd candidates is based on this reconstruction. However, a better mass resolution can be achieved by refitting the entire decay tree of \Bd candidates whilst applying extra constraints.  This technique was first used by the \babar and is practically implemented with a Kalman fitter\cite{Hulsbergen:2005pu}.  Most commonly, any intermediate daughter particles are constrained to have their known masses and all tracks are constrained to come from the position where the hard pp interaction took place (primary vertex).  In this analysis all daughter particles are constrained to come from the primary vertex and the \etaz mass is constrained to the current world average ($547.826\pm0.018MeV$)\cite{PDG2014}.  The \Kstar mass is not constrained because it is a wide resonance; the natrual width of the \Kstar is around 50MeV.  It is impossible to reconstruct a particle with a better resolution than what is dictated by it's natural width.  Consequently,, one can expect correctly reconstructed \Kstar particles to still have a mass a considerable distance from the PDG value.  Therefore, constraining the \Kstar candidate to its PDG value can bias the refitted \Bd mass.
+The combination of particles to form a \Bd candidate described is all done by the \lhcb reconstruction packages and the initial, loose, selection of \Bd candidates is based on this reconstruction. However, a better mass resolution can be achieved by refitting the entire decay tree of \Bd candidates whilst applying extra constraints.  This technique was first used by the \babar and is practically implemented with a Kalman fitter\cite{Hulsbergen:2005pu}.  Most commonly, any intermediate daughter particles are constrained to have their known masses and all tracks are constrained to come from the position where the hard pp interaction took place (primary vertex).  In this analysis all daughter particles are constrained to come from the primary vertex and the \etaz mass is constrained to the current world average ($547.826\pm0.018MeV$)\cite{PDG2014}.  The \Kstar mass is not constrained because it is a wide resonance; the natrual width of the \Kstar is around 50MeV.  It is impossible to reconstruct a particle with a better resolution than what is dictated by it's natural width.  Consequently, one can expect correctly reconstructed \Kstar particles to still have a mass a considerable distance from the PDG value.  Therefore, constraining the \Kstar candidate to its PDG value can bias the refitted \Bd mass.
 
 \subsection{Event Selection}
 \label{sec:Selection}
@@ -59,17 +75,21 @@ The cuts applied as part of the stripping selection used for this analysis are s
 The meaning of these variables is as follows:
 \begin{itemize}
 \item \textbf{$\chi_{vtx}^2$} is the $\chi^2$ per degree of freedom of the initial vertex fit used to determine the properties of the daughter particles (see section \label{sec:Decay Reconstruction}).
-\item \textbf{DOCA $\chi^2$} requires the $\chi^2$ of the distance of closest approach between all possible pairs of particles that form the \Bd to be less than the given value
-\item \textbf{$P_t$} Momentum transverse to the beam pipe.
-\item \textbf{DIRA} The cosine of the angle between the \Bd momentum direction and the vector between the most likely primary vertex and the \Bd decay vertex.
-\item \textbf{IP $\chi^2$} The $\chi^2$ of the impact parameter (see Figure \ref{fig:decaydiag}).
-\item \textbf{m(X)$\pm$} Requires the mass of the candidate to lie no more than this value from the PDG mass.
-\item \textbf{Ghost Prob} The probability that a track is fake, as determined by the \lhcb tracking system.
+\item \textbf{DOCA $\chi^2$} requires the $\chi^2$ of the distance of closest approach between all possible pairs of particles that form the \Bd to be less than the given value. See Figure \ref{fig:DOCAandIP}.
+\item \textbf{$P_t$}: Momentum transverse to the beam pipe.
+\item \textbf{DIRA}: The cosine of the angle between the \Bd momentum direction and the vector between the most likely primary vertex and the \Bd decay vertex.
+\item \textbf{IP $\chi^2$}: The $\chi^2$ of the impact parameter (see Figure \ref{fig:DOCAandIP}).
+\item \textbf{m(X)$\pm$}: Requires the mass of the candidate to lie no more than this value from the PDG mass.
+\item \textbf{Ghost Prob}: The probability that a track is fake, as determined by the \lhcb tracking system.
 \end{itemize}
 In addition to the cuts shown in Table \ref{tab:stripping}, candidates are required to pass either of the  ``HLT1TrackAllL0Decision'' trigger lines which are explained in section \ref{sec:trigger}.
 
-
-The efficiency of this selction can be assessed by applying it to signal MC; the efficiency is then simply $\frac{No. True Signal Events Passing Stripping}{ No. Generated}$.  The stripping efficiency is found to be $0.00317 \pm 0.00002$, which is a quite typical stripping efficiency at \lhcb.
+\begin{figure}
+  \includegraphics[width=\textwidth]{IPandDOCA.pdf}
+  \caption{A schematic diagram showing DOCA and IP in a typical \Bd decay.}
+  \label{fig:DOCAandIP}
+\end{figure}
+The efficiency of this selction can be assessed by applying it to signal MC; the efficiency is then simply $\frac{No. True Signal Events Passing Stripping}{ No. Generated}$.
 %However, when the \lhcb analysis software is ran on MC not every resulting event is a true signal event.  This is because false candidates can easily be created for a variety of reasons, but the most common of which is when particles from other pp interactions in the same bunch crossing get wrongly attributed as a candidate particle.  To ensure only true MC signal events are used in this analysis truth cuts are applied before it is used.
 
 The stripping efficiency is then found to be $0.00317 \pm 0.00002$, which is a quite typical stripping efficiency at \lhcb.
@@ -103,20 +123,20 @@ A simple decision tree (DT) is just a set of binary cuts applied one after the o
 An example of a trained DT is shown in Figure \ref{fig:DT}.  Every event in this tree has the initial selection criteria at the top of the tree applied, and then the further cuts are applied depending on the output of the first.  Every event is then classified as signal or background by this tree.
 
 The specific tree shown in Figure \ref{fig:DT} has been used to classify artificial events just based on the variables $x$ and $y$.  Figure \ref{fig:square} shows a scatter plot of $x$ against $y$ populated by both ``signal'' and ``background'' events.  The positions of the cuts applied by this DT are also shown; it can be seen they seperate signal and background reasonably well.  If more variables are used, more nodes can be added to the decision tree and the cuts become multi dimensonial.
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{DT.png}
   \caption{A single decision tree that is classifying events as signal or background based on the artificial variables x and y}
   \label{fig:DT}
 \end{figure}
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{square.png}
   \caption{A scatter plot of $x$ against $y$ for the artificially generated events. The black lines show the cuts applied by the trained decision tree in Figure \ref{fig:DT}}
   \label{fig:square}
 \end{figure}
 
-It should be noted that the artificial variables provide better seperation than any found in real data but despite this there are still background events that are classified as signal events and vica versa. Also, it is not unusual for some analyses to use as many as 30 variables in a multi variate analysis which would make a single decision tre very complex.  The biggest reason why a single decision tree is not used, however, is because the training of a single tree is not stable; it is highly susceptible to statistical fluctuations.
+It should be noted that the artificial variables provide better seperation than any found in real data but despite this there are still background events that are classified as signal events and vica versa. Also, it is not unusual for some analyses to use as many as 30 variables in a multi variate analysis which would make a single decision tree very complex.  The biggest reason why a single decision tree is not used, however, is because the training of a single tree is not stable; it is highly susceptible to statistical fluctuations.
 
 \paragraph{Boosting}
 These issues are solved by the boosting process, which involves training many decision trees (400-1200), scoring the effectiveness of the tree and returning a single value that is the weighted average of the response from all the trees.  In this analysis the TMVA package is used to train and apply BDTs which uses the Adaboost algorithm\cite{Hocker:2007ht}. 
@@ -129,7 +149,7 @@ where $\beta$ is a constant.  Next, the weights of events mis identified by the 
 \begin{equation}
   W=W e^{\alpha}
 \end{equation}
-and all event weights are renomralised.  This lends more weight to mis idenitifed events. The same scoring process is then iteratively applied to every DT trained, but mis identified events are only re weighted until the total weight of all mis identified events reaches $50\%$. 
+and all event weights are renormalised.  This lends more weight to mis idenitifed events. The same scoring process is then iteratively applied to every DT trained, but mis identified events are only re weighted until the total weight of all mis identified events reaches $50\%$. 
 
 For a given event the final BDT value assigned is given by,
 
@@ -154,14 +174,14 @@ The variables used in the BDT are shown in Table \ref{tab:vars}.  The TMVA packa
     Variable & Explanation \\ \hline
     B0 PT & Transverse momentum of \Bd candidate \\ \hline
     log(1-B0 DIRA OWNPV) & natural log of one minus the DIRA angle (see section \ref{sec:stripping}) \\ \hline
-    B0 ENDVERTEX CHI2 & The $\chi^2$ probability of the \Bd endvertex from the least squares fit used to assign the daughters to the B0 endvertex \\ \hline
+    B0 ENDVERTEX CHI2 & The $\chi^2$ of the \Bd endvertex from the least squares fit used to assign the daughters to the B0 endvertex \\ \hline
     log(B0 PVFit Chi2) & The natural logarithm of the $\chi^2$ of the fit used to refit the entire decaytree described in section \ref{sec:Decay Reconstruction} \\ \hline
     B0 eta & The pseudorapidity of the \Bd candidate \\ \hline
     B0 FD OWNPV & The flight distance of the \Bd between the primary vertex and decay vertex \\ \hline
-    log(B0 TAU CHI2) & The $\chi^2$ probability of the \Bd lifetime. \\ \hline
+    log(B0 TAU CHI2) & The $\chi^2$ of the \Bd lifetime. \\ \hline
     Kstar CosTheta & The cosine of the angle between the \Kstar candidates momentum in the \Bd rest frame and the \Bd momentum in the lab frame. \\ \hline
     Kstar eta & The pseudorapidity of the \Kstar \\ \hline
-    piminus0 OWNPV CHI2 & The $\chi^2$ probability of the \pim belonging to the \etaz vertex \\ \hline
+    piminus0 OWNPV CHI2 & The $\chi^2$ of the \pim belonging to the \etaz `vertex \\ \hline
     pi0 CosTheta & The cosine of the angle between the \piz candidates momentum in the \etaz rest frame and the \etaz momentum in the lab frame.\\ \hline
     gamma PT and gamma0 PT & The transverse momentum of the photons from the \piz \\ \hline
     log B0RF KPlusKst costheta & The logarithm of the cosine of the angle between the \Kp and the \Kstar candidate in the rest frame of the \Bd. \\ \hline
@@ -170,13 +190,11 @@ The variables used in the BDT are shown in Table \ref{tab:vars}.  The TMVA packa
     B0 Sum Track PT & The sum of the transverse momentum for all tracks in a candiate event (\pim,\Kp,\pim,\pip). \\ \hline
     B0 Sum PCHI2 & The sum of the $chi^2$ probabilities for each track belonging to the event. \\ \hline
     B0RF KPlusPiMinus costheta & The cosine of the angle between the \Kp and \pim in the rest frame of the \Bd \\ \hline
-
-    %TODO check variable description
   \end{tabular}
   \caption{The variables used in the BDT, a diagram of the decay is shown in Figure \ref{fig:decaytree}}
 \end{table}
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{vars.png}
   \caption{Plots of 6 of the input variables showing the seperation between signal and background they provide}
@@ -185,17 +203,18 @@ The variables used in the BDT are shown in Table \ref{tab:vars}.  The TMVA packa
 
 The overall ouptut of the trained BDT for the control samples is shown in Figure \ref{fig:BDTOut}.  Firstly, this plot shows that the BDT is able to provide good seperation between signal and background.  This plot also shows the overtraining check that TMVA performs.  Overtraining occurs when the BDT becomes too sensitive to statistical fluctuations in the input variable distributions.  In the case of overtraining, the BDT shows excellent seperation for the specific control samples used but worse seperation for the input variables in general.  TMVA checks for this by splitting the control samples in half before training, and only one half is used to train the BDT.  When the BDT is trained, it is applied to the remaining half of the control sampeles, and in the case of no overtraining the distirbution of the BDT response varaible should be the same for both halves of the control samples.  Figure \ref{fig:BDTOut} shows the BDT response distributions for both the training and test samples. These are considered to be consistent, there are no systematic disrepencies between the distributions.  The Kolomogrov-Smirnov test shown on the plot should be ignored, as internal \lhcb studies have shown this to be unreliable\cite{Grünberg:2019861}.  This trained BDT was then applied to all events that passed the stripping and trigger cuts.
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{BDTOut.png}
   \caption{The output of the BDT as applied to the control samples.  This also shows the overtraining check}
   \label{fig:BDTOut}
 \end{figure}
-%TODO maybe do BDT double training thing
+%TODO maybe do BDT double training thin
 
 %optimisation of BDT Cut
+\clearpage
 \paragraph{Optimisation of BDT Cut}
-A cut on the BDT response now needs to be applied.  As the \Bd meson has been observed to decay to \Kstar \etaz previously, this analysis not performed blinded.  The consequences of this is that signal significance can be used to optimise the BDT cut.  The signal significance, $\sigma$, is defined as,
+A cut on the BDT response now needs to be applied.  As the \Bd meson has been observed to decay to \Kstar \etaz previously, this analysis is not performed blinded.  The consequences of this is that signal significance can be used to optimise the BDT cut.  The signal significance, $\sigma$, is defined as,
 \begin{equation}
   \sigma=\frac{S}{\sqrt{S+B}}
 \end{equation}
@@ -234,7 +253,7 @@ where
   Figure \ref{fig:MCfit} shows the results of the fit performed to truth matched MC with the values of the free parameters determined by the fit.  The fit fraction in this Figure is $N_{C2}/N_{C1}$.  This shows a good quality fit to monte carlo and, crucially, it recovers the known signal yield within uncertainties.
 
 %TODO maybe provide PULLS
-  \begin{figure}
+  \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{MCMassFit.png}
     \caption{A plot of the truth matched monte carlo with no BDT cut and the fitted double crystal ball function.  The red and blue dashed lines are the inidividual crystal ball functions, the solid blue line is the overall fit}
@@ -245,7 +264,7 @@ where
 
   The signal window was then defined to be within $\pm2\sigma$ of the \Bd mass, and the value of $\sigma$ was taken to be the value obtained for the widest crystal ball function in the mass fit to MC. An extended unbinned maximum likelihood fit was then performed at each BDT cut and the number of signal and background events within the signal window were extracted at each BDT cut.  This allowed the signal significance as a function of BDT cut to be determined, a plot of this is shown in Figure \ref{fig:bdtsigopt}.  The uncertainty on significance was calculate by propagating through the uncertainties on signal and background yields from the fit.  Figure \ref{fig:bdtsigopt} shows that the optimum BDT cut is at a value of 0.07.  By applying the BDT to MC it is found that the signal efficiency of this cut is $0.934\pm0.008$, which is pleasingly high.
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{sigbdtopt.png}
   \caption{Signal significance as a function of bdt cut}
@@ -254,13 +273,18 @@ where
 
 Figure \ref{fig:massfit} shows the mass fit to data at this BDT cut.  Firstly the signal peak can clearly be seen with a significance of $15.9\sigma$ and a healthy signal yield of $452\pm29$ events.  However, the position of the signal peak (mean of crystal ball functions) is pulled to a higher value that is actually the limit set in the fitting procedure.  Also, there appears to be features in the background other than pure (exponential) combinatorial background which are causing data points to be systematically higher/lower than the fit in several places.  Therefore, the absolute values extracted from this fit can not be trusted, but this fit was deemed to provide an accurate enough estimate of the signal significane to optimise the BDT.  Consequently, a BDT cut of 0.07 was applied.
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{MassFit.png}
   \caption{The mass fit to data at the optimum BDT cut of 0.07.  The pink dashed line is the exponential (combinatorial) background and the green dashed line is the signal peak.  K is the constant in the exponential power, CBMean is the mean of the two crystal balls used to model signal and N/SignalYield is the number of background/signal events within the $2\sigma$ signal window.}
   \label{fig:massfit}
 \end{figure}
-    
+
+
+\subsubsection{Next Steps}
+\label{sec:next steps}
+
+The next stage of the selection is a PID selection.  This uses the PID variables from the \lhcb detector to remove particles that are mis identified. However, before this can take place the features in the background that are not just combinatorial need to be understood and ideally paramaterised.  After the PID selection is complete multiple candidates need to be considered, which is when there is more than one \Bd candidate per bunch crossing.  The way multiple candidates are dealt with will be decided after they have been investigated, as they can arise in several ways. A selection can then also be developed for 2011 data and, if detector effects are the same, combined with 2012 data. A single mass fit can then be performed to extract the total signal yield in all $3fb^{-1}$ of data. This can then be used as a control channel in the search for \Lb \to p \Km \etaz.
 %TODO check likelihood
 
 %Decay Reconstruction
