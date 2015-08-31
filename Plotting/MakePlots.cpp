@@ -3,11 +3,11 @@
 #include"Comparison.hpp"
 int main(){
   std::string Testem3Dir="/Users/Tim/PhD/Sim/MidTerm/Data/TestEm3/";
-  FiveSimRun* FiveLHCbOld= new FiveSimRun("/Users/Tim/PhD/Sim/MidTerm/Data/TestEm3/95/LHCbOld_Save95.root","v9.5 LHCbOldPL");
+  FiveSimRun* FiveLHCbOld= new FiveSimRun("/Users/Tim/PhD/Sim/MidTerm/Data/TestEm3/95/LHCbOld_Save95.root","v9.5 Old MSc Model");
   std::string DataFilePath=Testem3Dir+"LHCbOldPL_Save.root";
-  SixSimRun* LHCbOld= new SixSimRun(DataFilePath.data(),"LHCbOld");
+  SixSimRun* LHCbOld= new SixSimRun(DataFilePath.data(),"v9.6 Old MSc Model");
   DataFilePath=Testem3Dir+"LHCbNew_Save.root";
-  SixSimRun* LHCbNew= new SixSimRun(DataFilePath.data(),"LHCbNew");
+  SixSimRun* LHCbNew= new SixSimRun(DataFilePath.data(),"v9.6 New MSc Model");
   DataFilePath=Testem3Dir+"opt0_Save.root";
   SixSimRun* opt0= new SixSimRun(DataFilePath.data(),"opt0");
   DataFilePath=Testem3Dir+"opt1_Save.root";
@@ -24,9 +24,9 @@ int main(){
   Comparison *AllComparison = new Comparison("AllComparison");
   LHCbComparison->AddSimRun(LHCbOld);
   LHCbComparison->AddSimRun(LHCbNew);
-  BoxComparison->AddSimRun(opt0);
-  BoxComparison->AddSimRun(opt1);
-  BoxComparison->AddSimRun(opt2);
+  //  BoxComparison->AddSimRun(opt0);
+  //  BoxComparison->AddSimRun(opt1);
+  //  BoxComparison->AddSimRun(opt2);
   BoxComparison->AddSimRun(opt3);
   BoxComparison->AddSimRun(opt4);
   LHCbComparison->AddSimRun(FiveLHCbOld);
@@ -36,8 +36,8 @@ int main(){
   AllComparison->AddSimRun(opt0);
   // AllComparison->AddSimRun(opt1);
   //  AllComparison->AddSimRun(opt2);
-  AllComparison->AddSimRun(opt3);
-  AllComparison->AddSimRun(opt4);
+  // AllComparison->AddSimRun(opt3);
+  //  AllComparison->AddSimRun(opt4);
   AllComparison->AddSimRun(FiveLHCbOld);
   TFile* BoxOut = new TFile("BoxOutput.root","RECREATE");
   BoxComparison->WriteStraightRes();

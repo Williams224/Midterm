@@ -3,12 +3,12 @@
 Comparison::Comparison(std::string _Name):ComparisonName(_Name){
   Colors.push_back(kRed);
   Colors.push_back(kBlue);
-  Colors.push_back(kGreen);
+  Colors.push_back(kGreen+3);
   Colors.push_back(kMagenta);
   Colors.push_back(kOrange);
   Colors.push_back(kCyan+1);
   Colors.push_back(kOrange+4);
-  Colors.push_back(kGreen+3);
+  Colors.push_back(kSpring+4);
   Colors.push_back(kYellow+3);
   FitEquation= new TLatex();
   FitEquation->SetTextSize(0.03);
@@ -74,6 +74,11 @@ void Comparison::WriteStraightRes(){
   StraightLeg->Draw();
   if(SimRuns.size()==2)FR->DrawText(0.13,0.07,"v9.5 Fit Result");
   if(SimRuns.size()==2)FR->DrawText(0.18,0.07,"v9.6 Fit Result");
+  FitEquation->DrawLatex(0.13,0.059,"#sigma=Resolution of Energy Distribution in A\
+ctive Layers");
+  FitEquation->DrawLatex(0.13,0.055,"E= Mean Energy Deposited in Active Layers");
+  FitEquation->DrawLatex(0.13,0.051,"Fit: #frac{#sigma}{E}=#frac{a}{#sqrt{E}} #\
+oplus C");
   StraightCanvas->Write();
     
 
@@ -100,6 +105,7 @@ void Comparison::WriteCurvedRes(){
   StraightLeg->Draw();
   if(SimRuns.size()==2)FR->DrawText(0.13,0.07,"v9.5 Fit Result");
   if(SimRuns.size()==2)FR->DrawText(0.18,0.07,"v9.6 Fit Result");
+
   CurvedCanvas->Write();
 }
 
