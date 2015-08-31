@@ -21,7 +21,7 @@ Another unique characteristic of the \lhcb detector is the lower luminosity that
 \end{figure}
 \subsection{Tracking}
 \label{sec:Tracking}
-The objective of any particle physics tracking system is to provide positional information on the path taken by chraged particles.  At all collider based experiments the paths of charged particles are curved by a magentic field to distinguish positive and negatively charged particles and also aid particle identification.  At \lhcb this is performed by a warm dipole magnet, which is subject to a polarity reversal periodically to remove systematic uncertainties.
+The objective of any particle physics tracking system is to provide positional information on the path taken by chraged particles.  At all collider based experiments the paths of charged particles are curved by a magentic field to distinguish positive and negatively charged particles, measure momentum and also aid particle identification.  At \lhcb this is performed by a warm dipole magnet, which is subject to a polarity reversal periodically to remove systematic uncertainties.
 
 The first stage of the \lhcb tracking system is the Vertex Locator (VELO).  When a \Bd meson is created it will travel a measurable distance before it decays.  As the \Bd is neutral it leaves no track, therefore there is a secondary or displaced vertex present in the decay.  This is also the case for many other mesons containing b and c quarks.  As these make up such a large section of the \lhcb phyiscs programme the VELO was developed to detect these secondary vertices.
 
@@ -46,12 +46,33 @@ The role of calorimetry in HEP experiments is predominantly to measure the energ
 
 The electromagentic calorimeter used by \lhcb is a tried and tested shashlik sampling calorimeter.  It consists of 66 seperate layers, each consisting of 2mm of lead and 4mm of plastic scintillator.  This amounts to 25 radiation lengths of material.  The role of the lead is to induce an electromagnetic shower as quickly as possible within short spatial constraints and the role of the scintillator is to measure the energy contained in the EM shower.
 
-The light from the plastic scintillator is transported to photo multiplier tubes by wavelength shifting fibres.  These change the wavelength of the light from the plastic scintillator to a wavelength compatible with the photo multiplier tubes.  The signal from the PMTs is then proportional to the energy of the incident particle.
+The light from the plastic scintillator is transported to photo multiplier tubes by wavelength shifting fibres.  These change the wavelength of the light from the plastic scintillator to a wavelength compatible with the photo multiplier tubes.  The signal from the PMTs is then proportional to the energy of the incident particle, so the energy of the incident particle can be inferred.
 
 \subsection{Particle Identification}
 \label{sec:Particle Identification}
+A large section of the \lhcb physics programme relys on the excellent particle identification (PID) ability of the \lhcb detector.  There are many analyses that would not be possible if pions, kaons and protons could not be seperated as cleanly as they are. One result where this is the case is the observation of a pentaquark like state \cite{LHCb-PAPER-2015-029}.
 
+The PID performance of the \lhcb detector is largely due to the presence of two ring imaging chernkov detectors (RICH1 and RICH2 in Figure \ref{fig:detectdiag}).  When a charged particle travels faster than the speed of light in a medium it will emit photons at an angle $\theta$ to the momentum direction of the charged particle.  The angle at which these photons are radiated is given by,
+\begin{equation}
+  cos(\theta)=\frac{1}{n\beta}=\frac{E}{np}=\frac{\sqrt{p^2+m^2}}{np}
+\end{equation}
+where n is the refractive index of the medium and p,E and m are the momentum, energy and mass of the charged particle respectively.  The RICH1 detector is filled with $C_4F_{10}$ and RICH2 is filled with $CF_4$.  The refractive index of these mediums has been measured very accurately.
 
-%Muons
+The RICH system measures the angle $\theta$ of cherenkov photons and the momentum of the charged particles can be measured independently of the RICH system with the curvature of the charged tracks.  By combining these measurements, with the knowledge of the refractive index of the medium, one can determine the mass of the charged particle.  It can be determined with a resolution good enough to identify the charged particle.
+
+The performance of the RICH detector varies as a function of charged partilce momentum.  During run I, for a momentum averaged Kaon efficiency of $95\%$ for a $10\%$ pion mis-identification rate was observed.  This means $95\%$ of kaons can be correctly identified as kaons whilst only $10\%$ of pions are mis-identified as kaons\cite{Aaij:1978280}.
+
+\subsection{Trigger}
+\label{sec:Trigger}
+The role of a trigger in a HEP experiment is to decide which events are worth recording.  At the LHC, proton bunches arrive at the interaction point every 25ns therefore collisions happen at a rate of 40MHz.  It is impossible to process and record every single bunch crossing at this rate.  Also, it would not be useful as only a fraction of the interactions that take place at \lhcb are of interest.
+
+The \lhcb trigger system is comprised of 2 distinct levels.  The first level is the L0 trigger, which is entirely implemented in hardware using field programmable gate arrays (FPGAs).  The role of the L0 trigger is to reduce the rate of events from 40MHz to 1.1MHz of potentially useful events.  As these decisions have to be made at such a high rate, only information from the calorimeters and muon system are used in the L0 trigger.
+
+The next stage is the High Level Trigger (HLT), which is an entirely software trigger that makes use of a computing farm with 26000 processor cores.  The HLT reduces the overall event rate to 3kHz.  However, this is split into 2 sub-triggers; the HLT1 and HLT2.
+
+The HLT1 reduces the 1.1MHz input rate to 43kHz by partially reconstructing the event.  In addition to the calorimeter and muon information, the information from the VELO and tracking systems is used.  Simple selection criteria based on the information from these sub detectors can then be applied.
+
+Now that the rate is reduced to 43kHz, the HLT2 can perform a full event reconstruction and apply more complete selection critera.  These involve the information from all sub detectors and are often based on topological multivariate requirements.  The rate of events passing the HLT2 is 3kHz.  Therefore, the \lhcb trigger system has reduced the event rate my 4 orders of magnitude from 40MHz to 3kHz.
+
 
 \clearpage
