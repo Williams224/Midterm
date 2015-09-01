@@ -166,14 +166,13 @@ A BDT was trained, and applied to candidates that passed the trigger and strippi
 The variables used in the BDT are shown in Table \ref{tab:vars}.  The TMVA package ranks all input variables in order of importance based on the gini value and the number of times it is the variable in the top node of the tree.  These variables were chosen by adding all variables that could possibly discriminate signal from background and then iteratively removing the lowest ranked variables.  This was done until the lowest ranked variable still made a significant contribution to the signal and background seperation.  Care was also taken to ensure variables that are poorly modelled in MC were not used, as this could lead to false seperation.  Plots comparing a selection of these input variables in the signal and background control samples are shown in Figure \ref{fig:vars}.
 
 \begin{table}[h]
-  \label{tab:vars}
   \scriptsize
   \centering
   \begin{tabular}{|c|p{10cm}|}
     \hline
     Variable & Explanation \\ \hline
     B0 PT & Transverse momentum of \Bd candidate \\ \hline
-    log(1-B0 DIRA OWNPV) & natural log of one minus the DIRA angle (see section \ref{sec:stripping}) \\ \hline
+    log(1-B0 DIRA OWNPV) & natural log of one minus the DIRA angle (see section \ref{sec:Stripping}) \\ \hline
     B0 ENDVERTEX CHI2 & The $\chi^2$ of the \Bd endvertex from the least squares fit used to assign the daughters to the B0 endvertex \\ \hline
     log(B0 PVFit Chi2) & The natural logarithm of the $\chi^2$ of the fit used to refit the entire decaytree described in section \ref{sec:Decay Reconstruction} \\ \hline
     B0 eta & The pseudorapidity of the \Bd candidate \\ \hline
@@ -191,7 +190,8 @@ The variables used in the BDT are shown in Table \ref{tab:vars}.  The TMVA packa
     B0 Sum PCHI2 & The sum of the $chi^2$ probabilities for each track belonging to the event. \\ \hline
     B0RF KPlusPiMinus costheta & The cosine of the angle between the \Kp and \pim in the rest frame of the \Bd \\ \hline
   \end{tabular}
-  \caption{The variables used in the BDT, a diagram of the decay is shown in Figure \ref{fig:decaytree}}
+  \caption{The variables used in the BDT, a diagram of the decay is shown in Figure \ref{fig:DOCAandIP}}
+  \label{tab:vars}
 \end{table}
 
 \begin{figure}[h]
