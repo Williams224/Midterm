@@ -25,7 +25,7 @@ The intention of this analysis is to use the full $3fb^{-1}$ dataset collected b
 
 \subsection{Decay Reconstruction}
 \label{sec:Decay Reconstruction}
-The \Kstar will be reconstructed in the channel $\Kstar \to \Kp\pim$ which has a branching fraction of $99.901\pm0.009\%$ \cite{PDG2014}.  The \etaz will be reconstructed in the channel $\etaz \to \pip\pim\piz$ where the \piz decays to 2 photons, which has a combined branching fraction of $21.83\pm0.28\%$\cite{PDG2014}.  This is not the dominant decay mode of the \etaz particle but the 2 decay modes with higher branching fractions contain only neutral particles in the final state.  This means there is no tracking information available and the \lhcb calorimeter (unlike the \atlas calorimeter) does not provide any directional information for the photons it detects.  Consequently, reconstruction efficiencies for all neutral final states are significantly lower and backgrounds are higher, which makes the \pip\pim\piz channel the optimal choice.  
+The \Kstar will be reconstructed in the channel $\Kstar \to \Kp\pim$ which has a branching fraction of $99.901\pm0.009\%$ \cite{PDG2014}.  The \etaz will be reconstructed in the channel $\etaz \to \pip\pim\piz$ where the \piz decays to two photons, which has a combined branching fraction of $21.83\pm0.28\%$\cite{PDG2014}.  This is not the dominant decay mode of the \etaz particle but the two decay modes with higher branching fractions contain only neutral particles in the final state.  This means there is no tracking information available and the \lhcb calorimeter (unlike the \atlas calorimeter) does not provide any directional information for the photons it detects.  Consequently, reconstruction efficiencies for all neutral final states are significantly lower and backgrounds are higher, which makes the \pip\pim\piz channel the optimal choice.  
 
 Each of the final state particles in the decay chain are assigned a mass hypothesis based on information from all of the \lhcb sub detectors before being combined to form their respective mother particles.  The properties of the mother particle (e.g Energy, momentum, flight distance) are then determined with a fit to the daughter particles;   the $\chi^2$ of this fit can then aid the choice of candidate decays.
 
@@ -105,7 +105,7 @@ In order to pass the trigger selection, an event must satisfy the following crit
   (L0GlobalTIS \textbf{OR} L0HadronDecision TOS) \textbf{AND} (Hlt1TrackAllL0Decision TOS) \textbf{AND} (Hlt2Top2BodyBBDTDecision TOS \textbf{OR} B0 Hlt2Topo3BodyBBDTDecision TOS \textbf{OR} Hlt2Topo4BodyBBDTDecision TOS)
 }
 
-The L0 Hadron Decision TOS line is required because the final state of this analysis contains 4 hadrons, therefore events that do not pass this trigger line are unlikely to be signal.  The Hlt2 trigger lines make use of the fact that this stage of the trigger is applied offline and apply a boosted decision tree (BDT) using topological variables, more description of BDTs is given in section \ref{sec:multivar}.
+The L0 Hadron Decision TOS line is required because the final state of this analysis contains four hadrons, therefore events that do not pass this trigger line are unlikely to be signal.  The Hlt2 trigger lines make use of the fact that this stage of the trigger is applied offline and apply a boosted decision tree (BDT) using topological variables, more description of BDTs is given in section \ref{sec:multivar}.
 
 As part of the monte carlo production process the \lhcb trigger system is emulated, therefore MC events are also flagged with the trigger lines they pass.  This means the signal efficiecny of this trigger selection can be assessed simply by applying it to MC.  The signal efficiency of this trigger selection is found to be $0.715\pm0.006$.  This is a good trigger efficiency for \lhcb, and considerably higher than the approximately $20\%$ efficiency that hampered the analysis of \Lb \to \Lz\etaz \cite{LHCb-PAPER-2015-019}.
 
@@ -157,7 +157,7 @@ For a given event the final BDT value assigned is given by,
   V=\sum \limits_{i}^{N_{Trees}}\alpha_iV_i
 \end{equation}
 
-where $\alpha_i$ is the score assigned to the i'th decision tree and $V_i$ is the output of the $i_{th}$ decision tree which is -1 if the DT classifys the event as background and 1 if it is classified as signal.  This means the final value assigned to an event by the BDT is between -1 and 1 with 1 being more likely to be signal.  After the BDT is applied, there is a single BDT variable that can be cut on.
+where $\alpha_i$ is the score assigned to the i'th decision tree and $V_i$ is the output of the $i_{th}$ decision tree which is minus one if the DT classifys the event as background and one if it is classified as signal.  This means the final value assigned to an event by the BDT is between minus one and one with one being more likely to be signal.  After the BDT is applied, there is a single BDT variable that can be cut on.
 
 %TODO add adaboost reference.
 \paragraph{Application for \Bd \to \Kstar \etaz}
@@ -197,7 +197,7 @@ The variables used in the BDT are shown in Table \ref{tab:vars}.  The TMVA packa
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{vars.png}
-  \caption{Plots of 6 of the input variables showing the seperation between signal and background they provide}
+  \caption{Plots of six of the input variables showing the seperation between signal and background they provide}
   \label{fig:vars}
 \end{figure}
 
