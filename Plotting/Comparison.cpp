@@ -133,7 +133,7 @@ void Comparison::WriteSamplingRatio(){
     SamplingRatioLeg->AddEntry(s->second->GetSamplingRatio(CurrentColor,(*m)),(s->second->GetName()).data(),"LPE");
     SamplingTitle=SamplingTitle+(s->second->GetName())+", ";
   }
-  SamplingRatioMG->Draw("APL");
+  SamplingRatioMG->Draw("AP");
   SamplingTitle=SamplingTitle+"sampling ratio with 10000 events";
   SamplingRatioMG->SetTitle(SamplingTitle.data());
   SamplingRatioMG->GetYaxis()->SetTitle("Scintillator E/Lead E");
@@ -157,7 +157,7 @@ void Comparison::WriteScintSampling(){
     ScintSamplingTitle=ScintSamplingTitle+(s->second->GetName())+", ";
   }
   ScintSamplingTitle=ScintSamplingTitle+" sampling fraction with 10000 events";
-  ScintSamplingMG->Draw("APL");
+  ScintSamplingMG->Draw("AP");
   ScintSamplingLeg->Draw();
   ScintSamplingMG->SetTitle(ScintSamplingTitle.data());
   ScintSamplingMG->GetYaxis()->SetTitle("Scintillator E/Incident E");
@@ -177,11 +177,11 @@ void Comparison::WriteLeadSampling(){
   for(auto s=SimRuns.begin();s!=SimRuns.end();++s,++c,++m){
     Color_t CurrentColor=(*c);
     LeadSamplingMG->Add(s->second->GetLeadSamping(CurrentColor,(*m)));
-    LeadSamplingLeg->AddEntry(s->second->GetLeadSamping(CurrentColor,(*m)),(s->second->GetName()).data(),"LPE");
+    LeadSamplingLeg->AddEntry(s->second->GetLeadSamping(CurrentColor,(*m)),(s->second->GetName()).data(),"LrPE");
     LeadSamplingTitle=LeadSamplingTitle+(s->second->GetName())+", ";
   }
   LeadSamplingTitle=LeadSamplingTitle+" with 10000 events";
-  LeadSamplingMG->Draw("APL");
+  LeadSamplingMG->Draw("AP");
   LeadSamplingLeg->Draw();
   LeadSamplingMG->SetTitle(LeadSamplingTitle.data());
   LeadSamplingMG->GetYaxis()->SetTitle("Leadillator E/Incident E");
