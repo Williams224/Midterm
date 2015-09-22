@@ -5,7 +5,7 @@ int main(){
   std::string Testem3Dir="/Users/Tim/PhD/Sim/MidTerm/Data/TestEm3/";
   FiveSimRun* FiveLHCbOld= new FiveSimRun("/Users/Tim/PhD/Sim/MidTerm/Data/TestEm3/95/LHCbOld_Save95.root","v9.5 LHCb Private PL");
   std::string DataFilePath=Testem3Dir+"LHCbOldPL_Save.root";
-  SixSimRun* LHCbOld= new SixSimRun(DataFilePath.data(),"v9.6 LHCb Private PL");
+  SixSimRun* LHCbOld= new SixSimRun(DataFilePath.data(),"LHCbold");
   DataFilePath=Testem3Dir+"LHCbNew_Save.root";
   SixSimRun* LHCbNew= new SixSimRun(DataFilePath.data(),"LHCbNew");
   DataFilePath=Testem3Dir+"opt0_Save.root";

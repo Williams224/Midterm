@@ -1,6 +1,6 @@
 % $Id: introduction.tex 65669 2015-01-09 14:55:20Z tgershon $
 
-\section{Simulation}
+\section{Simulation}x
 \setcounter{secnumdepth}{5}
 \label{sec:Simulation}
 \subsection{Overview}
@@ -38,7 +38,6 @@ The first test that has been established is an extended electromagnetic \geant e
 The basic principle behind this comparison was to run this example within both \geant versions and compare selected results that could have implications for \lhcb.  Firstly, checks were made to ensure that the implementation of the example was unchanged between versions to ensure any discrepancies could be attributed to changes global to the \geant framework and not just a change in this specific example.  In order to make this a direct comparison between what is currently implemented and what will be implemented, the example was customised to run with an \lhcb 'private' PL.  Therefore, the same physics models are being used in both versions, but the models themselves could have changed between versions.
 
 \paragraph{Fractional Resolution Investigation}
-\phantomsection
 \label{sec:FractionalResolutionInvestigation}
 
 The first result used as a comparison tool between \geant versions was the fractional resolution of the electromagnetic calorimter.  No detector is perfect, therefore the energy of an incident particle is measured with a resolution defined by a gaussian distribution.  However, the width of this gaussian distribution varies with the energy of the incident particle.  The fractional resolution is defined as $\frac{\sigma(E)}{E}$ where $\sigma(E)$ is the standard deviation of a particle's measured energy at a given incident energy E.  The variation of the fractional resolution as a function of energy is given by, 
@@ -118,18 +117,18 @@ It is clear from these shower profiles that \geant version 9.6.p04 is depositing
 %PUT SEPERATE SHOWER PROFILES HERE
 %These reuslts show that the observed discrepancy can not be attributed to the way in which photons are modelled because the total energy deposited by photons is negligable and would therefore not be able to influence the overall shower profiles.
 
-In order to quantify further this observed change in behaviour, the ECAL sampling fraction as a function of energy was studied for both \geant versions.  The sampling fraction, in this context, is defined as the energy deposited in active layers (visible energy) divided by the incident particle energy.  The total energy deposited in each type of material was obtained by integrating the shower profiles over all layers. 
+In order to quantify further this observed change in behaviour, the ECAL sampling fraction as a function of energy was studied for both \geant versions.  The sampling fraction, in this context, is defined as the energy deposited in active layers (visible energy) divided by the incident particle energy.  The total energy deposited in each type of material was obtained by integrating the shower profiles over all layers.  A plot of sampling fraction as a function of energy is shown in Figure \ref{fig:sfcomp}.
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{SamplingFractionVersions.pdf}
-  \caption{A plot of sampling fraction as a function of energy for both versions of \geant}
+  \caption{A plot of sampling fraction as a function of energy for both versions of \geant.  The errors bars are smaller than the markers and the energies were chosen such that they are equally spaced when plotted as a function of $\frac{1}{\sqrt{E}}$}
   \label{fig:sfcomp}
 \end{figure}
 To further quantify this, the ratio of energy deposited in active layers to passive layers was also plotted as a function of energy for both \geant versions and the results are shown in figure \ref{fig:ratiocomp}.
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{SamplingRatioVersions.pdf}
-  \caption{A plot of the ratio of energy deposited in active layers to passive layers as a function of energy for both \geant versions}
+  \caption{A plot of the ratio of energy deposited in active layers to passive layers as a function of energy for both \geant versions.  The errors bars are smaller than the markers and the energies were chosen such that they are equally spaced when plotted as a function of $\frac{1}{\sqrt{E}}$}
   \label{fig:ratiocomp}
 \end{figure}
 
@@ -142,7 +141,7 @@ The precise cause of these discrepancies needs to be understood because there co
 After contacting the \geant collaboration, the cause of the observed discrepancy is believed to lie with the changes to the multiple scattering model.  In fact, the \geant collaboration recommended that the multiple scattering models used in the \lhcb private PL are changed from \texttt{UrbanMsc95} to \texttt{UrbanMsc93} below 100MeV and \texttt{WentzelVI} above 100MeV.  This would bring the simulation of multiple scattering within the LHCb private PL inline with the \geant \texttt{emstandard opt1} physics list.
 \clearpage
 \subsubsection{Comparison of Physics Lists}
-\label{sec:Comaprison of PL}
+\label{sec:Comparison of PL}
 As the \geant collaboration had recommended a change to the LHCb private PL it was decided a thorough investigation of other PL options would be carried out using the simple calorimeter test.  This would be done using \geant version 9.6.p04, so that investigations directly related to the next version of the \lhcb simulation package could be carried out.  The results of these investigations would help to inform the decision of which PL to use for the next release of \gauss.  
 
 The following physics lists supplied by \geant were investigated:
@@ -162,7 +161,7 @@ The following physics lists supplied by \geant were investigated:
 As well as the \geant supplied PLs there is also the \lhcb private physics list to consider.  This is simply \texttt{emstandard option1} with the \texttt{applycuts} option disabled.  However, it is based on the \texttt{opt1} PL from \geant v9.4 which differs to both the v9.5 and v9.6 \texttt{opt1} PLs.  Therefore, rather than just updating the multiple scattering model used in the \lhcb private PL (as suggested by the \geant collaboration  and discussed in section \ref{sec:Discussionofresultsone}) it was decided that the new version of the \lhcb private PL would be the \texttt{opt1} PL from v9.6 with the \texttt{ApplyCuts} option disabled. Consequently, this study investigates both the old version of the \lhcb private PL (LHCbOld) and the new version (LHCbNew).
 
 \paragraph{Fractional Resolution}
-The first quantity used to test all the PLs described above was, again, the fractional resolution of the model ECAL.  Just as described in section \ref{sec:FractionalResolutionInvestigation}, 10000 electrons were fired into the model ECAL at 13 different energies between 1.78GeV and 44.44GeV.  The same procedure as described in section \ref{sec:Fractional Resolution} was again used to extract $\frac{\sigma}{E}$ for each energy and a minimum $\chi^2$ fit to equation \ref{eq:fitfr} was performed to obtain the values of 'a' and 'c'.  The simulation was run with all of the PLs described in section \ref{sec:Comparison of PL}, allowing them to all be considered as a potential PL for the next version of \gauss.
+The first quantity used to test all the PLs described above was, again, the fractional resolution of the model ECAL.  Just as described in section \ref{sec:FractionalResolutionInvestigation}, 10000 electrons were fired into the model ECAL at 13 different energies between 1.78GeV and 44.44GeV.  The same procedure as described in section \ref{sec:FractionalResolutionInvestigation} was again used to extract $\frac{\sigma}{E}$ for each energy and a minimum $\chi^2$ fit to equation \ref{eq:fitfr} was performed to obtain the values of 'a' and 'c'.  The simulation was run with all of the PLs described in section \ref{sec:Comparison of PL}, allowing them to all be considered as a potential PL for the next version of \gauss.
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{LHCbPLsStraight2.pdf}
