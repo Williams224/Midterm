@@ -14,14 +14,14 @@ As mentioned previously \lhcb predominantly searches for new physics (NP) indire
   d\Gamma(P_A\to1 + ......n) = \frac{|\mathscr{M}|^2}{2M_A}dQ
 \end{equation}
 
-where $M_A$ is the mass of the decaying particle, $dQ$ is the lorentz invariant phase space (LIPS) and $|\mathscr{M}|^2$ is the matrix element for that decay \cite{halzen1984quarks}.  One can calculate the LIPS and insert it into equation \ref{eq:fgr}, giving a differential decay rate for a general $n$ body decay to be,
+where $M_A$ is the mass of the decaying particle, $dQ$ is the lorentz invariant phase space (LIPS) and $|\mathscr{M}|^2$ is the matrix element for that decay \cite{halzen1984quarks}.  The phase space factor arises from the fact the decay rate is a function of the final state particles momenta, and there is a continuous range of momenta the final state particles can take.  One can calculate the LIPS and insert it into equation \ref{eq:fgr}, giving a differential decay rate for a general $n$ body decay to be,
 \begin{equation}
   \label{eq:diffdec}
   d\Gamma(P_A \to 1+ .....n) = \frac{1}{2M_A}\bigg(\prod_{f}^{N}\frac{\vec{d^3p}_f}{(2\pi)^3(2E_f)}\bigg)|\mathscr{M}|^2(2\pi)^4\delta^4\bigg(\sum_{f}^n(p_f)-p_A\bigg)
 \end{equation}
-where the subscript f represents a final state particle and A is the initial particle \cite{halzen1984quarks}. The phase space factor takes into account all possible three momenta for each of the final state particles and the dirac delta function ensures conservation of four momentum.  One can then integrate over all possible momenta $p_1...p_n$ to get a total decay rate.
+where the subscript f represents a final state particle and A is the initial particle \cite{halzen1984quarks}. The product over all final state particles in equation \ref{eq:diffdec} takes into account the available phase space and the dirac delta function ensures four momenta conservation.  One can then integrate over all possible momenta $p_1...p_n$ to get a total decay rate.
 
-The interesting part of equation {\ref{eq:diffdec}} is the matrix element, $|\mathscr{M}|$.  This governs the fundamental interaction and transforms the initial state particles to the final state of the system.  For the decay of a particle $P_A$ to a given final state there is almost always more than one way in which the decay can proceed meaning more than one Feynman diagram can be drawn for the given decay.  Each Feynman diagram has an associated decay amplitude that is the reuslt of a standard model calculation.  However, this can be simplified with the use of Feynman rules which assign vertex factors and propagator terms to the pictorial representation.  The total matrix element $\mathscr{M}$ is then given by,
+The interesting part of equation {\ref{eq:diffdec}} is the matrix element, $|\mathscr{M}|$.  This governs the fundamental interaction and transforms the initial state particles to the final state of the system.  For the decay of a particle $P_A$ to a given final state there is almost always more than one way in which the decay can proceed meaning more than one Feynman diagram can be drawn for the given decay.  Each Feynman diagram has an associated decay amplitude that is the reuslt of a perturbative calculation.  However, this can be simplified with the use of Feynman rules which assign vertex factors and propagator terms to the pictorial representation.  The total matrix element $\mathscr{M}$ is then given by,
 
 \begin{equation}
   \label{eq:matrix}
